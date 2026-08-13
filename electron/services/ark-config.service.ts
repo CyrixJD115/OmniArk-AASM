@@ -265,6 +265,18 @@ export class ArkConfigService {
         iniFiles['GameUserSettings.ini']['[ServerSettings]'].push('RCONEnabled=True');
       }
 
+      // [Internationalization] Culture=en — required for EOS session registration.
+      // Without this, ASA's server browser discovery fails silently. The server runs
+      // and accepts direct connects, but never appears in the in-game browser list.
+      // Ref: arknest.app ASA server-not-showing guide (2026)
+      if (!iniFiles['GameUserSettings.ini']) {
+        iniFiles['GameUserSettings.ini'] = {};
+      }
+      if (!iniFiles['GameUserSettings.ini']['[Internationalization]']) {
+        iniFiles['GameUserSettings.ini']['[Internationalization]'] = [];
+      }
+      iniFiles['GameUserSettings.ini']['[Internationalization]'].push('Culture=en');
+
       // Write stat multiplier arrays to Game.ini [/script/shootergame.shootergamemode]
       const gameIniSection = '[/script/shootergame.shootergamemode]';
       this.statMultiplierMapping.forEach(statMapping => {
