@@ -12,43 +12,43 @@ $breakpoint-xl: 1200px;  // Large desktop
 // COLORS
 // =========================
 
-// Primary brand colors
-$primary: #0ea5e9;
-$success: #22c55e;
-$danger: #ef4444;
-$warning: #facc15;
-$info: #15a1bb;
-$secondary: #6b7280;
+// Primary brand colors — modern, crisp, high-contrast
+$primary: #3b82f6;       // blue-500
+$success: #10b981;       // emerald-500
+$danger: #ef4444;        // red-500
+$warning: #f59e0b;       // amber-500
+$info: #06b6d4;          // cyan-500
+$secondary: #64748b;     // slate-500
 
-// Background colors
-$background-dark: #23272f;
-$background-darker: #1e2228;
-$background-card: rgba(255, 255, 255, 0.02);
-$background-hover: #31343c;
+// Background colors — deep neutral with subtle blue undertone
+$background-dark: #0f172a;   // slate-900
+$background-darker: #0b1120; // darker slate
+$background-card: rgba(255, 255, 255, 0.03);
+$background-hover: #1e293b;  // slate-800
 
 // Text colors
-$text-primary: #b0b6c1;
-$text-secondary: #888c94;
+$text-primary: #e2e8f0;   // slate-200
+$text-secondary: #94a3b8;  // slate-400
 $text-white: #fff;
-$text-light: #e5e7eb;
-$text-muted: #9ca3af;
+$text-light: #f1f5f9;      // slate-100
+$text-muted: #64748b;      // slate-500
 
 // Border colors
-$border-color: #5e6870;
-$border-dark: #444;
-$border-darker: #333;
-$border-subtle: #44474d;
+$border-color: #334155;    // slate-700
+$border-dark: #1e293b;     // slate-800
+$border-darker: #0f172a;   // slate-900
+$border-subtle: #1e293b;
 
 // Focus and interaction colors
-$focus-color: #8ab4f8;
+$focus-color: #60a5fa;     // blue-400
 
 // =========================
 // BORDER RADIUS
 // =========================
-$radius-sm: 3px;
-$radius-md: 4px;
-$radius-lg: 6px;
-$radius-xl: 8px;
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 12px;
+$radius-xl: 16px;
 $radius-pill: 9999px;
 
 // =========================

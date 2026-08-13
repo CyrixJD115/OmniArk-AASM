@@ -19,25 +19,20 @@ describe('ark-args.utils', () => {
       expect(mainArg).toContain('SessionName=Server Name');
     });
 
-    it('should place SessionName after critical params so spaces in name do not drop Port/Password/RCON', () => {
+    it('should place session name after critical params so spaces in name do not drop Port/Password', () => {
       const args = buildArkServerArgs({
         sessionName: 'My Server With Spaces',
         gamePort: 7777,
         serverAdminPassword: 'adminpass',
         rconPort: 27020,
-        maxPlayers: 50,
-        queryPort: 27015
+        maxPlayers: 50
       });
       const mainArg = args[0];
       const portIdx = mainArg.indexOf('Port=7777');
-      const queryIdx = mainArg.indexOf('QueryPort=27015');
       const adminIdx = mainArg.indexOf('ServerAdminPassword=adminpass');
-      const rconIdx = mainArg.indexOf('RCONPort=27020');
       const sessionIdx = mainArg.indexOf('SessionName=');
       expect(sessionIdx).toBeGreaterThan(portIdx);
-      expect(sessionIdx).toBeGreaterThan(queryIdx);
       expect(sessionIdx).toBeGreaterThan(adminIdx);
-      expect(sessionIdx).toBeGreaterThan(rconIdx);
     });
 
     it('should include server password unencoded', () => {
@@ -82,16 +77,22 @@ describe('ark-args.utils', () => {
       expect(mainArg).not.toContain('ServerPVE');
     });
 
-    it('should not include QueryPort when set to 0', () => {
-      const args = buildArkServerArgs({ queryPort: 0 });
+    it('should not include QueryPort — deprecated in ASA, EOS handles discovery', () => {
+      const args = buildArkServerArgs({ queryPort: 27015 });
       const mainArg = args[0];
       expect(mainArg).not.toContain('QueryPort');
     });
 
-    it('should include QueryPort when set to a valid port', () => {
-      const args = buildArkServerArgs({ queryPort: 27015 });
+    it('should not include PeerPort — collides with RCON port (gamePort+1)', () => {
+      const args = buildArkServerArgs({ gamePort: 7777, rconPort: 7788 });
       const mainArg = args[0];
-      expect(mainArg).toContain('QueryPort=27015');
+      expect(mainArg).not.toContain('PeerPort');
+    });
+
+    it('should not include MultiHome — interferes with EOS NAT traversal', () => {
+      const args = buildArkServerArgs({});
+      const mainArg = args[0];
+      expect(mainArg).not.toContain('MultiHome');
     });
 
     it('should add -NOSTEAM when disableSteamSubsystem is true', () => {

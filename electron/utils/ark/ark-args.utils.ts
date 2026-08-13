@@ -22,15 +22,16 @@ export function buildArkServerArgs(config: any): string[] {
   if (config.gamePort) paramParts.push(`Port=${config.gamePort}`);
 
   if (config.altSaveDirName) paramParts.push(`AltSaveDirectoryName=${config.altSaveDirName}`);
-  // QueryPort is the Steam server discovery/query port (UDP).
-  // Each instance MUST have a unique QueryPort or only the first server initialises Steam.
-  if (config.queryPort) paramParts.push(`QueryPort=${config.queryPort}`);
-  // PeerPort is the Steam Online Subsystem authentication port.
-  // Auto-calculated as gamePort + 1 (UE default) — not user-configurable.
-  const peerPort = config.gamePort ? parseInt(config.gamePort, 10) + 1 : null;
-  if (peerPort) paramParts.push(`PeerPort=${peerPort}`);
-  // MultiHome ensures each instance properly binds its own sockets
-  paramParts.push('MultiHome=0.0.0.0');
+  // QueryPort: REMOVED — deprecated in ASA. Server discovery uses Epic Online
+  // Services (EOS), not Steam A2S query. Passing QueryPort= caused the server
+  // to attempt legacy Steam query binding that never succeeds under Wine/Proton.
+  // See: mantascope.com ASA guide, jsknnr/ark-ascended-server, pelican-eggs#239
+  //
+  // PeerPort: REMOVED — auto-calculating gamePort+1 collides with RCON port
+  // (RCON also defaults to gamePort+1). Dual-bind attempt kills EOS auth socket.
+  //
+  // MultiHome: REMOVED — 0.0.0.0 binding interferes with EOS NAT traversal.
+  // Server binds to all interfaces by default without this flag.
 
   // Cluster parameters
   if (config.clusterDirOverride) {
@@ -87,9 +88,11 @@ export function buildArkServerArgs(config: any): string[] {
   // Wine/Proton compatibility flags (required for ARK Server v83.21+ on Linux)
   // These Unreal Engine flags prevent crashes and hangs when running under Wine:
   // - NoHangDetection: Disables UE hang detection that freezes during Sentry SDK init
-  // - NOSTEAM: Disables Steam API subsystem (prevents Sentry initialization hang)
+  // - NOSTEAM: Disables Steam API subsystem (prevents Sentry initialization hang).
+  //   Server is STILL discoverable — ASA uses EOS for server browser discovery,
+  //   not Steam. "Steam Subsystem initialized: FAILED" is expected and harmless.
+  //   (Ref: mze9412 — 12 ASA servers, all show FAILED, all visible in browser)
   // - norhithread: Disables RHI rendering thread (prevents Wine threading issues)
-  // Note: Server will still be discoverable via QueryPort and show in Steam server browser
   // Can be disabled via disableWineCompatFlags config option if issues arise
   if (getPlatform() === 'linux' && !isTrue(config.disableWineCompatFlags)) {
     args.push('-NoHangDetection');

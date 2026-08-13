@@ -47,6 +47,7 @@
     "@angular/forms": "^20.0.0",
     "@angular/platform-browser": "^20.0.0",
     "@angular/router": "^20.0.0",
+    "@iconify/json": "^2.2.516",
     "@types/bcrypt": "^6.0.0",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
@@ -61,6 +62,7 @@
     "font-awesome": "^4.7.0",
     "fs-extra": "^11.2.0",
     "helmet": "^8.1.0",
+    "iconify-icon": "^3.0.2",
     "ngx-toastr": "^19.0.0",
     "node-fetch": "^2.7.0",
     "node-pty": "^1.1.0",
@@ -188,7 +190,8 @@
         "--disable-setuid-sandbox",
         "--disable-audio-output"
       ]
-    },    "deb": {
+    },
+    "deb": {
       "depends": [
         "libnotify4",
         "libappindicator3-1",
