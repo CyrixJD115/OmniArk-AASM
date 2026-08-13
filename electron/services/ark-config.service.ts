@@ -265,17 +265,16 @@ export class ArkConfigService {
         iniFiles['GameUserSettings.ini']['[ServerSettings]'].push('RCONEnabled=True');
       }
 
-      // [Internationalization] Culture=en — required for EOS session registration.
-      // Without this, ASA's server browser discovery fails silently. The server runs
-      // and accepts direct connects, but never appears in the in-game browser list.
-      // Ref: arknest.app ASA server-not-showing guide (2026)
-      if (!iniFiles['GameUserSettings.ini']) {
-        iniFiles['GameUserSettings.ini'] = {};
-      }
-      if (!iniFiles['GameUserSettings.ini']['[Internationalization]']) {
-        iniFiles['GameUserSettings.ini']['[Internationalization]'] = [];
-      }
-      iniFiles['GameUserSettings.ini']['[Internationalization]'].push('Culture=en');
+      // [Internationalization] Culture — required for EOS session registration.
+            // Without it, ASA's server browser discovery fails silently. The server runs
+            // and accepts direct connects, but never appears in the in-game browser list.
+            // Ref: arknest.app ASA server-not-showing guide (2026)
+            //
+            // Only added as a FALLBACK (Culture=en). If the user already set a custom
+                        // Culture line in the INI (manual edit), it's preserved and the fallback is
+                        // skipped — otherwise the file would end up with duplicate Culture entries,
+                        // which the guide explicitly warns against.
+                        // (Applied below, after mainConfigDir is resolved — see Culture fallback block.)
 
       // Write stat multiplier arrays to Game.ini [/script/shootergame.shootergamemode]
       const gameIniSection = '[/script/shootergame.shootergamemode]';
@@ -335,6 +334,20 @@ export class ArkConfigService {
       // Collect the config dir the server will actually read, so we can pick up custom
       // lines the user edited there directly — and, further down, write our INIs into it.
       const mainConfigDir = this.getRuntimeConfigDir(instanceDir, config, instanceId);
+
+      // [Internationalization] Culture fallback — applied here now that mainConfigDir
+      // is resolved. Only adds Culture=en if NO Culture line exists in either config
+      // dir. A user-set Culture (manual edit) is preserved verbatim.
+      const hasUserCulture = this.iniFileHasCulture(configDir, mainConfigDir);
+      if (!hasUserCulture) {
+        if (!iniFiles['GameUserSettings.ini']) {
+          iniFiles['GameUserSettings.ini'] = {};
+        }
+        if (!iniFiles['GameUserSettings.ini']['[Internationalization]']) {
+          iniFiles['GameUserSettings.ini']['[Internationalization]'] = [];
+          iniFiles['GameUserSettings.ini']['[Internationalization]'].push('Culture=en');
+        }
+      }
 
       // Write each INI file, preserving any unmapped lines from the existing file
       Object.keys(iniFiles).forEach(filename => {
@@ -457,7 +470,32 @@ export class ArkConfigService {
   }
 
   /**
-   * Build a set of all INI keys (lowercase, without array indices) that the app manages.
+     * Check whether a Culture= line already exists in either the instance or main
+     * GameUserSettings.ini. Used to decide whether the Culture=en fallback is needed —
+     * user-set Culture values from manual edits are preserved verbatim and never
+     * overwritten by the fallback.
+     */
+    private iniFileHasCulture(configDir: string, mainConfigDir: string): boolean {
+      const candidates = [
+        path.join(configDir, 'GameUserSettings.ini'),
+        path.join(mainConfigDir, 'GameUserSettings.ini')
+      ];
+      for (const filePath of candidates) {
+        if (!fs.existsSync(filePath)) continue;
+        try {
+          const content = fs.readFileSync(filePath, 'utf8');
+          for (const rawLine of content.split('\n')) {
+            const line = rawLine.trim();
+            if (!line || line.startsWith(';') || line.startsWith('#') || line.startsWith('[')) continue;
+            if (/^culture\s*=/i.test(line)) return true;
+          }
+        } catch { /* skip unreadable file */ }
+      }
+      return false;
+    }
+
+    /**
+     * Build a set of all INI keys (lowercase, without array indices) that the app manages.
    * Used to identify which lines in an existing INI file are "custom" and should be preserved.
    */
   private buildManagedKeySet(config: any): Set<string> {
