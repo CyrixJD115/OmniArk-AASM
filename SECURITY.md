@@ -24,7 +24,7 @@ Restart=on-failure
 
 ```
 AUTH_ENABLED=true
-AUTH_USERNAME=cyrix
+AUTH_USERNAME=CyrixJD115
 AUTH_PASSWORD=<strong-generated>
 ```
 
@@ -47,7 +47,7 @@ API. If false, the panel loads straight in with no login screen even when the ba
 ```json
 {
   "authenticationEnabled": true,
-  "authenticationUsername": "cyrix",
+  "authenticationUsername": "CyrixJD115",
   ...
 }
 ```
@@ -55,7 +55,7 @@ API. If false, the panel loads straight in with no login screen even when the ba
 Flipped with:
 
 ```bash
-sudo sed -i 's/"authenticationEnabled": false/"authenticationEnabled": true/; s/"authenticationUsername": ""/"authenticationUsername": "cyrix"/' /home/novaadmin/.local/share/cerious-aasm/global-config.json
+sudo sed -i 's/"authenticationEnabled": false/"authenticationEnabled": true/; s/"authenticationUsername": ""/"authenticationUsername": "CyrixJD115"/' /home/novaadmin/.local/share/cerious-aasm/global-config.json
 ```
 
 Read live on each request — no restart needed.
@@ -65,7 +65,7 @@ Read live on each request — no restart needed.
 ```bash
 curl -s -o /dev/null -w "%{http_code}\n" http://localhost:17761/api/hello           # 401 without session
 curl -s -X POST http://localhost:17761/api/login -H "Content-Type: application/json" \
-  -d '{"username":"cyrix","password":"wrong"}' -w "\n%{http_code}\n"                  # 401
+  -d '{"username":"CyrixJD115","password":"wrong"}' -w "\n%{http_code}\n"                  # 401
 ```
 
 ## Known limitations
