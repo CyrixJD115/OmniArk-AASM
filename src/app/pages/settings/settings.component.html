@@ -2,38 +2,36 @@
   <div class="card-header button-header collapsible-header" (click)="showSettings = !showSettings">
     <h2>SETTINGS</h2>
     <div class="button-header-actions">
-      <span class="material-icons">
-        {{ showSettings ? 'expand_more' : 'expand_less' }}
-      </span>
+      <iconify-icon icon="{{ showSettings ? 'material-symbols:expand-more' : 'material-symbols:expand-less' }}" class="shrink-0"></iconify-icon>
     </div>
   </div>
   <div class="card-body" *ngIf="showSettings">
     <div class="tabs">
-      <button *ngFor="let tab of tabs" 
+      <button *ngFor="let tab of tabs"
               class="tab"
               [class.active]="activeTab === tab.id"
               (click)="selectTab(tab.id)">
-        <i class="material-icons">{{ tab.icon }}</i>
+        <iconify-icon icon="{{ tab.icon }}" class="shrink-0"></iconify-icon>
         {{ tab.label }}
         <span *ngIf="tab.showUpdateBadge" class="update-badge" title="Update Available">!</span>
       </button>
     </div>
-    
+
     <!-- Server Installation Tab -->
     <div *ngIf="activeTab === 'server-installation'">
       <div class="action-group-settings">
         <button class="btn btn-ghost" (click)="onInstallServer()" [disabled]="hasRunningServers" [title]="hasRunningServers ? 'Stop all running servers before installing or updating' : ''">
-          <i class="material-icons">download</i>
+          <iconify-icon icon="material-symbols:download" class="shrink-0"></iconify-icon>
           Install/Update Ark Server
         </button>
 
         <button class="btn btn-ghost" (click)="onOpenConfigDirectory()" *ngIf="isElectron">
-          <i class="material-icons">folder_open</i>
+          <iconify-icon icon="material-symbols:folder-open" class="shrink-0"></iconify-icon>
           Open Config Directory
         </button>
 
         <button class="btn btn-ghost" (click)="onCheckForUpdates()">
-          <i class="material-icons">refresh</i>
+          <iconify-icon icon="material-symbols:refresh" class="shrink-0"></iconify-icon>
           Check for Updates
         </button>
       </div>
@@ -52,13 +50,13 @@
             <h4 style="color: #0ea5e9; margin-bottom: 1rem;">Storage</h4>
             <div class="form-group">
               <label class="form-control-label">Server Data Directory</label>
-              <div style="display: flex; gap: 10px; align-items: center;">
-                <input type="text" [ngModel]="serverDataDir" [disabled]="true" class="form-control input" style="flex: 1;" placeholder="Default path (managed by app)" />
-                <button class="btn btn-sm btn-secondary" (click)="selectServerDataDir()" [disabled]="!isElectron" title="Select Folder">
-                  <i class="material-icons">folder_open</i>
+              <div class="flex gap-2 items-center">
+                <input type="text" [ngModel]="serverDataDir" [disabled]="true" class="form-control flex-1" placeholder="Default path (managed by app)" />
+                <button class="btn btn-sm btn-ghost btn-icon-only" (click)="selectServerDataDir()" [disabled]="!isElectron" title="Select Folder">
+                  <iconify-icon icon="material-symbols:folder-open" class="shrink-0"></iconify-icon>
                 </button>
-                <button class="btn btn-sm btn-danger" (click)="clearServerDataDir()" [disabled]="!isElectron || !serverDataDir" title="Reset to Default">
-                  <i class="material-icons">clear</i>
+                <button class="btn btn-sm btn-danger btn-icon-only" (click)="clearServerDataDir()" [disabled]="!isElectron || !serverDataDir" title="Reset to Default">
+                  <iconify-icon icon="material-symbols:clear" class="shrink-0"></iconify-icon>
                 </button>
               </div>
               <label class="form-control-label desc">Directory where server data (Saved/ShooterGame/etc) is stored. Change requires restart.</label>
@@ -110,10 +108,10 @@
           <h2>WEB SERVER STATUS</h2>
           <div class="button-header-actions">
             <button class="btn" *ngIf="!webServerRunning" (click)="onStartWebServer()" [disabled]="!isElectron">
-              <i class="material-icons">play_arrow</i> Start
+              <iconify-icon icon="material-symbols:play-arrow" class="shrink-0"></iconify-icon> Start
             </button>
             <button class="btn" *ngIf="webServerRunning" (click)="onStopWebServer()" [disabled]="!isElectron">
-              <i class="material-icons">stop</i> Stop
+              <iconify-icon icon="material-symbols:stop" class="shrink-0"></iconify-icon> Stop
             </button>
           </div>
         </div>
@@ -178,7 +176,7 @@
             </div>
             <div *ngIf="authenticationEnabled && webServerRunning" class="form-group">
               <div class="status-info">
-                <i class="material-icons">info</i>
+                <iconify-icon icon="material-symbols:info" class="shrink-0"></iconify-icon>
                 <span>Authentication settings cannot be changed while the web server is running. Stop the server to make changes.</span>
               </div>
             </div>
@@ -226,27 +224,27 @@
             <h2 class="section-title">Features</h2>
             <div class="features-list">
               <div class="feature-item">
-                <i class="material-icons feature-check">check_circle</i>
+                <iconify-icon icon="material-symbols:check-circle" class="feature-check shrink-0"></iconify-icon>
                 <span class="feature-text">Multi-server management</span>
               </div>
               <div class="feature-item">
-                <i class="material-icons feature-check">check_circle</i>
+                <iconify-icon icon="material-symbols:check-circle" class="feature-check shrink-0"></iconify-icon>
                 <span class="feature-text">Automatic server installation</span>
               </div>
               <div class="feature-item">
-                <i class="material-icons feature-check">check_circle</i>
+                <iconify-icon icon="material-symbols:check-circle" class="feature-check shrink-0"></iconify-icon>
                 <span class="feature-text">RCON integration</span>
               </div>
               <div class="feature-item">
-                <i class="material-icons feature-check">check_circle</i>
+                <iconify-icon icon="material-symbols:check-circle" class="feature-check shrink-0"></iconify-icon>
                 <span class="feature-text">Mod management</span>
               </div>
               <div class="feature-item">
-                <i class="material-icons feature-check">check_circle</i>
+                <iconify-icon icon="material-symbols:check-circle" class="feature-check shrink-0"></iconify-icon>
                 <span class="feature-text">Backup system</span>
               </div>
               <div class="feature-item">
-                <i class="material-icons feature-check">check_circle</i>
+                <iconify-icon icon="material-symbols:check-circle" class="feature-check shrink-0"></iconify-icon>
                 <span class="feature-text">Real-time monitoring</span>
               </div>
             </div>
@@ -257,19 +255,19 @@
             <h2 class="section-title">System Info</h2>
             <div class="system-info-list">
               <div class="system-info-item">
-                <i class="material-icons system-icon">computer</i>
+                <iconify-icon icon="material-symbols:computer" class="system-icon shrink-0"></iconify-icon>
                 <span class="system-text">Platform: {{ getPlatform() }}</span>
               </div>
               <div class="system-info-item">
-                <i class="material-icons system-icon">memory</i>
+                <iconify-icon icon="material-symbols:memory" class="system-icon shrink-0"></iconify-icon>
                 <span class="system-text">Node.js: {{ getNodeVersion() }}</span>
               </div>
               <div class="system-info-item">
-                <i class="material-icons system-icon">desktop_windows</i>
+                <iconify-icon icon="material-symbols:desktop-windows" class="system-icon shrink-0"></iconify-icon>
                 <span class="system-text">Electron: {{ getElectronVersion() }}</span>
               </div>
               <div class="system-info-item">
-                <i class="material-icons system-icon">folder</i>
+                <iconify-icon icon="material-symbols:folder" class="system-icon shrink-0"></iconify-icon>
                 <span class="system-text">Config: {{ getConfigPath() }}</span>
               </div>
             </div>

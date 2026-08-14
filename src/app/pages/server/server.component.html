@@ -110,7 +110,7 @@
     <div class="action-group-modal">
       <button type="button" (click)="onBackupNameCancel()" class="btn btn-ghost" [disabled]="isCreatingBackup">Cancel</button>
       <button type="button" (click)="onBackupNameConfirm()" class="btn btn-ghost" [disabled]="isCreatingBackup">
-        <span *ngIf="isCreatingBackup" class="material-icons spinner">refresh</span>
+        <iconify-icon *ngIf="isCreatingBackup" icon="material-symbols:refresh" class="spinner shrink-0"></iconify-icon>
         Create Backup
       </button>
     </div>

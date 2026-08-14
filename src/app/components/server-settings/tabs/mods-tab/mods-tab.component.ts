@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectorRef, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from '../../../modal/modal.component';
@@ -9,6 +9,7 @@ import { UtilityService } from '../../../../core/services/utility.service';
 import { environment } from '../../../../../environments/environment';
 
 @Component({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   selector: 'app-mods-tab',
   standalone: true,
   imports: [CommonModule, FormsModule, ModalComponent],

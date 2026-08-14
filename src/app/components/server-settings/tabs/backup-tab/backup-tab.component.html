@@ -13,7 +13,7 @@
           <label class="form-control-label">Create Backup</label>
           <div style="display: flex; gap: 0.5rem; align-items: center;">
             <button class="btn btn-ghost" (click)="onCreateManualBackup()" [disabled]="isBackupLocked">
-              <i class="material-icons">backup</i>
+              <iconify-icon icon="material-symbols:backup" class="shrink-0"></iconify-icon>
               Create Backup Now
             </button>
           </div>
@@ -40,7 +40,7 @@
               <div class="custom-dropdown" [class.disabled]="isBackupLocked">
                 <button type="button" class="form-control input" [disabled]="isBackupLocked" (click)="onToggleBackupFrequencyDropdown()">
                   <span>{{ getBackupFrequencyDisplayName(backupFrequency) || 'Select frequency...' }}</span>
-                  <span class="material-icons">arrow_drop_down</span>
+                  <iconify-icon icon="material-symbols:arrow-drop-down" class="shrink-0"></iconify-icon>
                 </button>
                 <div *ngIf="backupFrequencyDropdownOpen && !isBackupLocked" class="dropdown-menu show">
                   <div *ngFor="let opt of getBackupFrequencyOptions()" (mousedown)="onBackupFrequencySelect(opt.value)" [ngClass]="{'selected': backupFrequency === opt.value}">{{ opt.display }}</div>
@@ -58,7 +58,7 @@
               <div class="custom-dropdown" [class.disabled]="isBackupLocked">
                 <button type="button" class="form-control input" [disabled]="isBackupLocked" (click)="onToggleBackupDayDropdown()">
                   <span>{{ getBackupDayDisplayName(backupDayOfWeek) || 'Select day...' }}</span>
-                  <span class="material-icons">arrow_drop_down</span>
+                  <iconify-icon icon="material-symbols:arrow-drop-down" class="shrink-0"></iconify-icon>
                 </button>
                 <div *ngIf="backupDayDropdownOpen && !isBackupLocked" class="dropdown-menu show">
                   <div *ngFor="let opt of getBackupDayOptions()" (mousedown)="onBackupDaySelect(opt.value)" [ngClass]="{'selected': backupDayOfWeek === opt.value}">{{ opt.display }}</div>
@@ -102,14 +102,14 @@
                 <td class="backup-date">{{ getFormattedDate(backup.createdAt) }}</td>
                 <td class="backup-size">{{ formatFileSize(backup.size) }}</td>
                 <td class="backup-actions">
-                  <button class="btn btn-sm btn-ghost" (click)="onRestoreBackup(backup)" [disabled]="isBackupLocked" title="Restore Backup">
-                    <i class="material-icons">restore</i>
+                  <button class="btn btn-sm btn-ghost btn-icon-only" (click)="onRestoreBackup(backup)" [disabled]="isBackupLocked" title="Restore Backup">
+                    <iconify-icon icon="material-symbols:restore" class="shrink-0"></iconify-icon>
                   </button>
-                  <button class="btn btn-sm btn-ghost" (click)="onDownloadBackup(backup)" title="Download Backup">
-                    <i class="material-icons">download</i>
+                  <button class="btn btn-sm btn-ghost btn-icon-only" (click)="onDownloadBackup(backup)" title="Download Backup">
+                    <iconify-icon icon="material-symbols:download" class="shrink-0"></iconify-icon>
                   </button>
-                  <button class="btn btn-sm btn-ghost" (click)="onDeleteBackup(backup)" title="Delete Backup">
-                    <i class="material-icons">delete_outline</i>
+                  <button class="btn btn-sm btn-ghost btn-icon-only" (click)="onDeleteBackup(backup)" title="Delete Backup">
+                    <iconify-icon icon="material-symbols:delete-outline" class="shrink-0"></iconify-icon>
                   </button>
                 </td>
               </tr>

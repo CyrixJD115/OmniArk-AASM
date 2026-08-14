@@ -1,9 +1,10 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { StatMultiplierService } from '../../../../core/services/stat-multiplier.service';
 
 @Component({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   selector: 'app-stat-multipliers-tab',
   standalone: true,
   imports: [CommonModule, FormsModule],

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -14,6 +14,7 @@ export interface Field {
 }
 
 @Component({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   selector: 'app-general-tab',
   standalone: true,
   imports: [CommonModule, FormsModule],

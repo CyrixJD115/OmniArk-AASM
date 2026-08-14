@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IpcService } from '../../../../core/services/ipc.service';
@@ -14,6 +14,7 @@ interface BroadcastMessage {
 }
 
 @Component({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   selector: 'app-broadcasts-tab',
   standalone: true,
   imports: [CommonModule, FormsModule],

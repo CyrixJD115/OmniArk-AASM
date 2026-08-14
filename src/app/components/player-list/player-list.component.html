@@ -1,6 +1,6 @@
 <!-- Players Tab Content -->
 <div class="tab-content">
-  <div class="form-group" style="grid-column: 1 / -1;">
+  <div class="form-group col-span-full">
     <h4>Online Player Management</h4>
     <p class="form-control-label desc">View currently connected players and manage their access. Players must be online and the server running for data to display.</p>
   </div>
@@ -10,19 +10,19 @@
     <p class="section-desc">Monitor active connections and player activity.</p>
 
     <!-- Refresh Section -->
-    <div class="form-group" style="grid-column: 1 / -1;">
-      <div style="display: flex; gap: 0.5rem; align-items: center;">
-        <button class="btn btn-ghost" (click)="refreshPlayers()" [disabled]="loading || serverInstance?.state !== 'Running'" style="white-space: nowrap;">
-          <i class="material-icons" [class.spin]="loading">refresh</i> Refresh Players
+    <div class="form-group col-span-full">
+      <div class="flex gap-2 items-center">
+        <button class="btn btn-ghost whitespace-nowrap" (click)="refreshPlayers()" [disabled]="loading || serverInstance?.state !== 'Running'">
+          <iconify-icon icon="material-symbols:refresh" class="shrink-0" [class.spin]="loading"></iconify-icon> Refresh Players
         </button>
-        <span class="form-control-label desc" style="margin: 0;" *ngIf="lastUpdated">
+        <span class="form-control-label desc m-0" *ngIf="lastUpdated">
           Last updated: {{ lastUpdated | date:'mediumTime' }}
         </span>
       </div>
     </div>
 
     <!-- Player List Section -->
-    <div class="form-group player-table-container" style="grid-column: 1 / -1;">
+    <div class="form-group player-table-container col-span-full">
       <label class="form-control-label">Online Players ({{ players.length }})</label>
       <div class="player-list">
         <table class="player-table">
@@ -30,20 +30,20 @@
           <tr>
             <th>Player Name</th>
             <th>Steam ID</th>
-            <th style="text-align: right;">Actions</th>
+            <th class="text-right">Actions</th>
           </tr>
         </thead>
         <tbody>
           <!-- Loading State -->
           <tr *ngIf="loading && players.length === 0" class="no-data-row">
             <td colspan="3" class="no-data">
-              <i class="material-icons spin">refresh</i> Loading players...
+              <iconify-icon icon="material-symbols:refresh" class="spin shrink-0"></iconify-icon> Loading players...
             </td>
           </tr>
           <!-- Error State -->
           <tr *ngIf="error && !loading" class="no-data-row">
             <td colspan="3" class="no-data">
-              <i class="material-icons">error_outline</i> {{ error }}
+              <iconify-icon icon="material-symbols:error-outline" class="shrink-0"></iconify-icon> {{ error }}
             </td>
           </tr>
           <!-- Empty State -->
@@ -53,10 +53,10 @@
           <!-- Player Rows -->
           <tr *ngFor="let player of players" class="table-row">
             <td class="player-name">{{ player.name }}</td>
-            <td class="player-id">{{ player.steamId }}</td>
+            <td class="player-id font-mono">{{ player.steamId }}</td>
             <td class="player-actions">
-              <button class="btn btn-sm btn-ghost" (click)="copySteamId(player.steamId)" title="Copy Steam ID">
-                <i class="material-icons">content_copy</i>
+              <button class="btn btn-sm btn-ghost btn-icon-only" (click)="copySteamId(player.steamId)" title="Copy Steam ID">
+                <iconify-icon icon="material-symbols:content-copy" class="shrink-0"></iconify-icon>
               </button>
             </td>
           </tr>

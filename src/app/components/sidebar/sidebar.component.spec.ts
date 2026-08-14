@@ -82,13 +82,13 @@ describe('SidebarComponent', () => {
   });
 
   it('should handle getServerStatusIcon and getServerStatusClass edge cases', () => {
-    expect(component.getServerStatusIcon({ state: 'error' } as any)).toBe('error');
+    expect(component.getServerStatusIcon({ state: 'error' } as any)).toBe('material-symbols:error');
     expect(component.getServerStatusClass({ state: 'error' } as any)).toBe('status-error');
-    expect(component.getServerStatusIcon({ state: 'starting' } as any)).toBe('hourglass_empty');
+    expect(component.getServerStatusIcon({ state: 'starting' } as any)).toBe('material-symbols:hourglass-empty');
     expect(component.getServerStatusClass({ state: 'starting' } as any)).toBe('status-starting');
-    expect(component.getServerStatusIcon({ state: 'stopping' } as any)).toBe('pause_circle_filled');
+    expect(component.getServerStatusIcon({ state: 'stopping' } as any)).toBe('material-symbols:pause-circle');
     expect(component.getServerStatusClass({ state: 'stopping' } as any)).toBe('status-stopping');
-    expect(component.getServerStatusIcon({ state: undefined } as any)).toBe('stop_circle');
+    expect(component.getServerStatusIcon({ state: undefined } as any)).toBe('material-symbols:stop-circle');
     expect(component.getServerStatusClass({ state: undefined } as any)).toBe('status-unknown');
   });
   let component: SidebarComponent;
@@ -216,9 +216,9 @@ describe('SidebarComponent', () => {
 
   it('should get server status icon and class', () => {
     const server = { state: 'running' } as any;
-    expect(component.getServerStatusIcon(server)).toBe('play_circle_filled');
+    expect(component.getServerStatusIcon(server)).toBe('material-symbols:play-circle');
     expect(component.getServerStatusClass(server)).toBe('status-running');
-    expect(component.getServerStatusIcon({ state: 'unknown' } as any)).toBe('stop_circle');
+    expect(component.getServerStatusIcon({ state: 'unknown' } as any)).toBe('material-symbols:stop-circle');
     expect(component.getServerStatusClass({ state: 'unknown' } as any)).toBe('status-unknown');
   });
 

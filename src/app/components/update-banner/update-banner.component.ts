@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { NgIf } from '@angular/common';
 import { MessagingService } from '../../core/services/messaging/messaging.service';
 import { Subscription } from 'rxjs';
@@ -16,6 +16,7 @@ export interface AppUpdateStatus {
 }
 
 @Component({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   selector: 'app-update-banner',
   standalone: true,
   imports: [NgIf],

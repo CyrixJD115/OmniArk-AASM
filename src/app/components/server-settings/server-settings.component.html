@@ -3,25 +3,23 @@
     <h2>SERVER SETTINGS</h2>
     <div class="button-header-actions">
       <input type="file" #configFileInput hidden accept=".ini" (change)="onFileSelected($event)">
-      <div class="form-control-label toggle-label" style="margin:0 0.75rem 0 0;gap:0.5rem;align-items:center;" (click)="$event.stopPropagation()">
-        <input type="checkbox" class="toggle-switch" [checked]="expertMode" (change)="toggleExpertMode($event)" tabindex="0" style="flex-shrink:0;" />
-        <span class="toggle-text" style="font-size:0.95rem;color:#b0b6c1;white-space:nowrap;">Expert Mode</span>
+      <div class="form-control-label toggle-label flex items-center gap-2 mr-3" (click)="$event.stopPropagation()">
+        <input type="checkbox" class="toggle-switch shrink-0" [checked]="expertMode" (change)="toggleExpertMode($event)" tabindex="0" />
+        <span class="toggle-text whitespace-nowrap text-sm text-[#b0b6c1]">Expert Mode</span>
       </div>
-      <button class="btn" (click)="onImportConfig($event)" title="Import settings from an INI file">
-        <i class="material-icons">file_upload</i>
+      <button class="btn btn-icon-only" (click)="onImportConfig($event)" title="Import settings from an INI file">
+        <iconify-icon icon="material-symbols:file-upload" class="shrink-0"></iconify-icon>
       </button>
-      <button class="btn" (click)="onExportConfig($event)" title="Export server configuration as ZIP">
-        <i class="material-icons">file_download</i>
+      <button class="btn btn-icon-only" (click)="onExportConfig($event)" title="Export server configuration as ZIP">
+        <iconify-icon icon="material-symbols:file-download" class="shrink-0"></iconify-icon>
       </button>
-      <button class="btn" (click)="onOpenCopyConfig($event)" title="Copy settings from another server">
-        <i class="material-icons">content_copy</i>
+      <button class="btn btn-icon-only" (click)="onOpenCopyConfig($event)" title="Copy settings from another server">
+        <iconify-icon icon="material-symbols:content-copy" class="shrink-0"></iconify-icon>
       </button>
-      <button *ngIf="isElectron" class="btn" (click)="onOpenDirectory($event)" title="Open server directory">
-        <i class="material-icons">folder_open</i>
+      <button *ngIf="isElectron" class="btn btn-icon-only" (click)="onOpenDirectory($event)" title="Open server directory">
+        <iconify-icon icon="material-symbols:folder-open" class="shrink-0"></iconify-icon>
       </button>
-      <span class="material-icons">
-        {{ isVisible ? 'expand_more' : 'expand_less' }}
-      </span>
+      <iconify-icon icon="{{ isVisible ? 'material-symbols:expand-more' : 'material-symbols:expand-less' }}" class="shrink-0"></iconify-icon>
     </div>
   </div>
   <div class="card-body" *ngIf="isVisible">
@@ -29,80 +27,79 @@
       <!-- Config tabs: hidden in Expert Mode -->
       <ng-container *ngIf="!expertMode">
         <button class="tab" [class.active]="activeTab === 'general'" (click)="onTabChange('general')">
-          <i class="material-icons">tune</i> General
+          <iconify-icon icon="material-symbols:tune" class="shrink-0"></iconify-icon> General
         </button>
         <button class="tab" [class.active]="activeTab === 'rates'" (click)="onTabChange('rates')">
-          <i class="material-icons">speed</i> Rates
+          <iconify-icon icon="material-symbols:speed" class="shrink-0"></iconify-icon> Rates
         </button>
         <button class="tab" [class.active]="activeTab === 'structures'" (click)="onTabChange('structures')">
-          <i class="material-icons">home</i> Structures
+          <iconify-icon icon="material-symbols:home" class="shrink-0"></iconify-icon> Structures
         </button>
         <button class="tab" [class.active]="activeTab === 'stats'" (click)="onTabChange('stats')">
-          <i class="material-icons">bar_chart</i> Stat Multipliers
+          <iconify-icon icon="material-symbols:bar-chart" class="shrink-0"></iconify-icon> Stat Multipliers
         </button>
         <button class="tab" [class.active]="activeTab === 'misc'" (click)="onTabChange('misc')">
-          <i class="material-icons">settings</i> Miscellaneous
+          <iconify-icon icon="material-symbols:settings" class="shrink-0"></iconify-icon> Miscellaneous
         </button>
         <button class="tab" [class.active]="activeTab === 'cluster'" (click)="onTabChange('cluster')">
-          <i class="material-icons">group_work</i> Cluster
+          <iconify-icon icon="material-symbols:group-work" class="shrink-0"></iconify-icon> Cluster
         </button>
       </ng-container>
 
       <!-- INI file tabs: shown only in Expert Mode -->
       <ng-container *ngIf="expertMode">
         <button *ngFor="let t of iniTabs" class="tab" [class.active]="activeTab === t.id" (click)="onTabChange(t.id)">
-          <i class="material-icons">code</i> {{ t.label }}
+          <iconify-icon icon="material-symbols:code" class="shrink-0"></iconify-icon> {{ t.label }}
         </button>
       </ng-container>
 
       <!-- Non-config tabs: always visible -->
       <button class="tab" [class.active]="activeTab === 'mods'" (click)="onTabChange('mods')">
-        <i class="material-icons">extension</i> Mods
+        <iconify-icon icon="material-symbols:extension" class="shrink-0"></iconify-icon> Mods
       </button>
       <button class="tab" [class.active]="activeTab === 'arkapi'" (click)="onTabChange('arkapi')">
-        <i class="material-icons">extension</i> ArkApi
+        <iconify-icon icon="material-symbols:extension" class="shrink-0"></iconify-icon> ArkApi
       </button>
       <button class="tab" [class.active]="activeTab === 'whitelist'" (click)="onTabChange('whitelist')">
-        <i class="material-icons">people</i> Whitelist
+        <iconify-icon icon="material-symbols:people" class="shrink-0"></iconify-icon> Whitelist
       </button>
       <button class="tab" [class.active]="activeTab === 'automation'" (click)="onTabChange('automation')">
-        <i class="material-icons">schedule</i> Automation
+        <iconify-icon icon="material-symbols:schedule" class="shrink-0"></iconify-icon> Automation
       </button>
       <button class="tab" [class.active]="activeTab === 'broadcasts'" (click)="onTabChange('broadcasts')">
-        <i class="material-icons">campaign</i> Broadcasts
+        <iconify-icon icon="material-symbols:campaign" class="shrink-0"></iconify-icon> Broadcasts
       </button>
       <button class="tab" [class.active]="activeTab === 'discord'" (click)="onTabChange('discord')">
-        <i class="material-icons">chat</i> Discord
+        <iconify-icon icon="material-symbols:chat" class="shrink-0"></iconify-icon> Discord
       </button>
       <button class="tab" [class.active]="activeTab === 'firewall'" (click)="onTabChange('firewall')" *ngIf="isLinux">
-        <i class="material-icons">security</i> Firewall
+        <iconify-icon icon="material-symbols:security" class="shrink-0"></iconify-icon> Firewall
       </button>
       <button class="tab" [class.active]="activeTab === 'backup'" (click)="onBackupTabClick()">
-        <i class="material-icons">backup</i> Backup
+        <iconify-icon icon="material-symbols:backup" class="shrink-0"></iconify-icon> Backup
       </button>
     </div>
-    
+
     <!-- Expert Mode / INI Editor -->
-    <div *ngIf="isInIniTab" style="display:flex;flex-direction:column;gap:0.75rem;margin-bottom:1rem;">
-      <div style="display:flex;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:wrap;">
+    <div *ngIf="isInIniTab" class="flex flex-col gap-3 mb-4">
+      <div class="flex items-center justify-end gap-3 flex-wrap">
         <button class="btn btn-sm" (click)="loadIniFile()" [disabled]="iniLoading" title="Reload from disk">
-          <i class="material-icons" style="font-size:16px;">refresh</i> Reload
+          <iconify-icon icon="material-symbols:refresh" width="16" class="shrink-0"></iconify-icon> Reload
         </button>
         <button class="btn btn-sm" (click)="saveIniFile()" [disabled]="iniSaving || iniLoading" title="Save to disk">
-          <i class="material-icons" style="font-size:16px;">save</i> {{ iniSaving ? 'Saving...' : 'Save' }}
+          <iconify-icon icon="material-symbols:save" width="16" class="shrink-0"></iconify-icon> {{ iniSaving ? 'Saving...' : 'Save' }}
         </button>
       </div>
-      <div *ngIf="iniLoading" style="color:#b0b6c1;padding:2rem;text-align:center;">
-        <i class="material-icons" style="font-size:32px;">hourglass_empty</i><br>Loading...
+      <div *ngIf="iniLoading" class="text-[#b0b6c1] p-8 text-center">
+        <iconify-icon icon="material-symbols:hourglass-empty" width="32" class="shrink-0"></iconify-icon><br>Loading...
       </div>
       <textarea *ngIf="!iniLoading"
-                class="form-control input"
-                style="width:100%;min-height:480px;font-family:monospace;font-size:1rem;resize:vertical;box-sizing:border-box;"
+                class="form-control w-full min-h-[480px] font-mono text-base resize-y box-border"
                 [(ngModel)]="iniContent"
                 spellcheck="false"
                 placeholder="No content loaded. Select a file and click Reload."></textarea>
-      <p class="form-control-label desc" style="margin:0;color:#ef4444;">
-        <i class="material-icons" style="font-size:14px;vertical-align:middle;">warning</i>
+      <p class="form-control-label desc flex items-center gap-1 m-0 text-[#ef4444]">
+        <iconify-icon icon="material-symbols:warning" width="14" class="shrink-0 align-middle"></iconify-icon>
         Expert Mode - edits directly modify the raw INI file on disk. Managed settings fields above are not synced when using this view.
       </p>
     </div>
@@ -129,7 +126,7 @@
       (saveSettings)="onSaveSettings()"
       (validateField)="validateField($event.key, $event.value)">
     </app-rates-tab>
-    
+
     <!-- Structures Tab Content -->
     <app-structures-tab
       *ngIf="activeTab === 'structures'"
@@ -139,7 +136,7 @@
       (saveSettings)="onSaveSettings()"
       (validateField)="validateField($event.key, $event.value)">
     </app-structures-tab>
-    
+
     <!-- Stats Tab Content -->
     <app-stat-multipliers-tab
       *ngIf="activeTab === 'stats'"
@@ -154,7 +151,7 @@
       (toggleStatSelectorDropdown)="toggleStatSelectorDropdown()"
       (statSelectorSelect)="onStatSelectorSelect($event)">
     </app-stat-multipliers-tab>
-    
+
     <!-- Misc Tab Content -->
     <app-misc-tab
       *ngIf="activeTab === 'misc'"
@@ -175,7 +172,7 @@
       (saveSettings)="onSaveSettings()"
       (validateField)="validateField($event.key, $event.value)">
     </app-cluster-tab>
-    
+
     <!-- Mods Tab Content -->
     <app-mods-tab
       *ngIf="activeTab === 'mods'"
@@ -186,7 +183,7 @@
       (toggleMod)="toggleMod.emit($event)"
       (updateModSettings)="updateModSettings.emit($event)">
     </app-mods-tab>
-    
+
     <!-- Whitelist Tab Content -->
     <app-whitelist-tab
       *ngIf="activeTab === 'whitelist'"
@@ -196,7 +193,7 @@
       (validateField)="validateField($event.key, $event.value)"
       (statusUpdate)="onWhitelistStatusUpdate($event)">
     </app-whitelist-tab>
-    
+
     <!-- Backup Tab Content -->
     <app-backup-tab
       *ngIf="activeTab === 'backup'"
@@ -264,11 +261,6 @@
       *ngIf="activeTab === 'arkapi'"
       [serverInstance]="serverInstance">
     </app-ark-api-tab>
-
-    <!-- Player List Content -->
-    <!-- <div *ngIf="activeTab === 'players'" class="h-[600px]">
-        <app-player-list [serverInstance]="serverInstance"></app-player-list>
-    </div> -->
   </div>
 </div>
 
@@ -277,13 +269,13 @@
   <div class="copy-config-modal">
     <div class="form-group">
       <label>Source Server</label>
-      <div class="custom-dropdown" style="position: relative;">
-        <button type="button" class="form-control input" (click)="toggleCopyConfigDropdown()" style="width: 100%; text-align: left; background: #23272f; border: 1px solid #444; border-radius: 6px; color: #b0b6c1; padding: 0.5rem 1rem; font-size: 0.97em; display: flex; align-items: center; justify-content: space-between;">
+      <div class="custom-dropdown relative">
+        <button type="button" class="form-control w-full text-left flex items-center justify-between" (click)="toggleCopyConfigDropdown()">
           <span>{{ selectedSourceServer ? getSourceServerDisplayName() : 'Select a server...' }}</span>
-          <span class="material-icons" style="font-size: 1.1em;">{{ copyConfigDropdownOpen ? 'arrow_drop_up' : 'arrow_drop_down' }}</span>
+          <iconify-icon icon="{{ copyConfigDropdownOpen ? 'material-symbols:arrow-drop-up' : 'material-symbols:arrow-drop-down' }}" class="shrink-0"></iconify-icon>
         </button>
-        <div *ngIf="copyConfigDropdownOpen" class="dropdown-menu show" style="position: absolute; left: 0; right: 0; top: 100%; background: #23272f; border: 1px solid #444; border-radius: 6px; z-index: 20; width: 100%; margin-top: 0.1rem; max-height: 200px; overflow-y: auto;">
-          <div *ngFor="let server of allServers" (mousedown)="onSelectSourceServer(server)" style="padding: 0.5rem 1rem; cursor: pointer; color: #b0b6c1; font-size: 0.97em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" [ngClass]="{'selected': selectedSourceServer?.id === server.id}">
+        <div *ngIf="copyConfigDropdownOpen" class="dropdown-menu show absolute left-0 right-0 top-full bg-[#23272f] border border-[#444] rounded-md z-20 w-full mt-0.5 max-h-[200px] overflow-y-auto">
+          <div *ngFor="let server of allServers" (mousedown)="onSelectSourceServer(server)" class="px-4 py-2 cursor-pointer text-[#b0b6c1] text-sm whitespace-nowrap overflow-hidden text-ellipsis hover:bg-white/5" [ngClass]="{'selected': selectedSourceServer?.id === server.id}">
             {{ server.sessionName || server.name }} ({{ server.mapName || 'Unknown Map' }})
           </div>
         </div>
@@ -313,10 +305,10 @@
 
     <div class="action-group-modal">
       <button class="btn" (click)="onCloseCopyConfig()">Cancel</button>
-      <button class="btn btn-primary" 
+      <button class="btn btn-primary"
               [disabled]="!selectedSourceServer || !hasAnyCategorySelected"
               (click)="onApplyCopyConfig()">
-        <i class="material-icons">content_copy</i> Apply
+        <iconify-icon icon="material-symbols:content-copy" class="shrink-0"></iconify-icon> Apply
       </button>
     </div>
   </div>

@@ -1,5 +1,5 @@
 import { ServerInstanceService } from './core/services/server-instance.service';
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { NgIf, NgForOf } from '@angular/common';
 import { WebSocketService } from './core/services/web-socket.service';
 import { Subscription } from 'rxjs';
@@ -21,6 +21,7 @@ declare global {
 }
 
 @Component({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   selector: 'app-root',
   imports: [RouterOutlet, SidebarComponent, ConnectionLostComponent, NgIf, NgForOf, ModalComponent, UpdateBannerComponent],
   templateUrl: './app.html'

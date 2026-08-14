@@ -32,7 +32,7 @@
     <div class="form-group" style="grid-column: 1 / -1;">
       <div style="display: flex; gap: 0.5rem; align-items: center;">
         <button class="btn btn-ghost" (click)="addMessage()" [disabled]="isLocked" style="white-space: nowrap;">
-          <i class="material-icons">add</i> Add Message
+          <iconify-icon icon="material-symbols:add" class="shrink-0"></iconify-icon> Add Message
         </button>
       </div>
     </div>
@@ -83,8 +83,8 @@
               />
             </td>
             <td class="broadcast-actions">
-              <button class="btn btn-sm btn-ghost" (click)="removeMessage(i)" [disabled]="isLocked" title="Remove Message">
-                <i class="material-icons">delete_outline</i>
+              <button class="btn btn-sm btn-ghost btn-icon-only" (click)="removeMessage(i)" [disabled]="isLocked" title="Remove Message">
+                <iconify-icon icon="material-symbols:delete-outline" class="shrink-0"></iconify-icon>
               </button>
             </td>
           </tr>

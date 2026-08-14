@@ -41,20 +41,20 @@
     <!-- Add Player Actions -->
     <div class="form-group" style="grid-column: 1 / -1;">
       <div style="display: flex; gap: 0.5rem; align-items: center;">
-        <button class="btn btn-ghost" 
-                (click)="openAddPlayerModal()" 
+        <button class="btn btn-ghost"
+                (click)="openAddPlayerModal()"
                 [disabled]="isLocked">
-          <i class="material-icons">person_add</i> Add Player
+          <iconify-icon icon="material-symbols:person-add" class="shrink-0"></iconify-icon> Add Player
         </button>
-        <button class="btn btn-ghost" 
-                (click)="openBulkAddModal()" 
+        <button class="btn btn-ghost"
+                (click)="openBulkAddModal()"
                 [disabled]="isLocked">
-          <i class="material-icons">group_add</i> Bulk Add
+          <iconify-icon icon="material-symbols:group-add" class="shrink-0"></iconify-icon> Bulk Add
         </button>
-        <button class="btn btn-ghost btn-danger" 
-                (click)="clearWhitelist()" 
+        <button class="btn btn-ghost btn-danger"
+                (click)="clearWhitelist()"
                 [disabled]="isLocked || whitelistedPlayers.length === 0">
-          <i class="material-icons">clear_all</i> Clear All
+          <iconify-icon icon="material-symbols:clear-all" class="shrink-0"></iconify-icon> Clear All
         </button>
       </div>
     </div>
@@ -81,11 +81,11 @@
               <td class="whitelist-name">{{ player.playerName || 'Unknown' }}</td>
               <td class="whitelist-date">{{ player.dateAdded || 'Unknown' }}</td>
               <td class="whitelist-actions">
-                <button class="btn btn-sm btn-ghost" 
-                        (click)="openRemoveConfirmModal(player.playerId)" 
-                        [disabled]="isLocked" 
+                <button class="btn btn-sm btn-ghost btn-icon-only"
+                        (click)="openRemoveConfirmModal(player.playerId)"
+                        [disabled]="isLocked"
                         title="Remove from whitelist">
-                  <i class="material-icons">person_remove</i>
+                  <iconify-icon icon="material-symbols:person-remove" class="shrink-0"></iconify-icon>
                 </button>
               </td>
             </tr>
@@ -98,7 +98,7 @@
   <!-- Status Message -->
   <div *ngIf="statusMessage" class="form-group" style="grid-column: 1 / -1;">
     <div class="status-message" [ngClass]="'status-' + statusType">
-      <i class="material-icons">{{ statusType === 'success' ? 'check_circle' : statusType === 'warning' ? 'warning' : 'error' }}</i>
+      <iconify-icon icon="{{ statusType === 'success' ? 'material-symbols:check-circle' : statusType === 'warning' ? 'material-symbols:warning' : 'material-symbols:error' }}" class="shrink-0"></iconify-icon>
       {{ statusMessage }}
     </div>
   </div>

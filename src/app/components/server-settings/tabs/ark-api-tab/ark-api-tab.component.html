@@ -22,11 +22,11 @@
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:0.75rem;">
         <button class="btn btn-ghost" (click)="checkLatestAsaApi()" [disabled]="checkingLatest">
-          <i class="material-icons">search</i>
+          <iconify-icon icon="material-symbols:search" class="shrink-0"></iconify-icon>
           {{ checkingLatest ? 'Checking...' : 'Check Latest Release' }}
         </button>
         <button class="btn" (click)="installAsaApi()" [disabled]="!latestDownloadUrl || installing">
-          <i class="material-icons">download</i>
+          <iconify-icon icon="material-symbols:download" class="shrink-0"></iconify-icon>
           {{ installing ? 'Installing...' : 'Install / Update AsaApi' }}
         </button>
         <span *ngIf="latestVersion" style="color:#94a3b8;font-size:0.85rem;">
@@ -52,7 +52,7 @@
                  style="flex:1;" [disabled]="installingFromUrl" />
           <button class="btn" (click)="installPluginFromUrl()"
                   [disabled]="!pluginInstallUrl.trim() || installingFromUrl">
-            <i class="material-icons">download</i>
+            <iconify-icon icon="material-symbols:download" class="shrink-0"></iconify-icon>
             {{ installingFromUrl ? 'Installing...' : 'Install' }}
           </button>
         </div>
@@ -71,7 +71,7 @@
         <div style="margin-top:0.4rem;">
           <input #pluginZipInput type="file" accept=".zip" hidden (change)="onZipFileSelected($event)" />
           <button class="btn btn-ghost" (click)="pluginZipInput.click()" [disabled]="installingFromZip">
-            <i class="material-icons">folder_open</i>
+            <iconify-icon icon="material-symbols:folder-open" class="shrink-0"></iconify-icon>
             {{ installingFromZip ? 'Installing...' : 'Choose ZIP File...' }}
           </button>
         </div>
@@ -86,14 +86,14 @@
       <h2>INSTALLED PLUGINS</h2>
       <div class="button-header-actions">
         <button class="btn btn-ghost" (click)="loadPlugins()" [disabled]="loading" title="Refresh">
-          <i class="material-icons">refresh</i>
+          <iconify-icon icon="material-symbols:refresh" class="shrink-0"></iconify-icon>
         </button>
       </div>
     </div>
     <div class="card-body">
 
       <div *ngIf="loading" style="color:#b0b6c1;text-align:center;padding:2rem;">
-        <i class="material-icons" style="font-size:32px;">hourglass_empty</i><br>Loading...
+        <iconify-icon icon="material-symbols:hourglass-empty" width="32" class="shrink-0"></iconify-icon><br>Loading...
       </div>
 
       <div *ngIf="!loading && plugins.length === 0" style="color:#6b7280;padding:1rem;">
@@ -119,13 +119,13 @@
               {{ plugin.description }}
             </div>
             <div *ngIf="!plugin.hasPluginJson" style="font-size:0.78rem;color:#f59e0b;margin-top:2px;">
-              <i class="material-icons" style="font-size:13px;vertical-align:middle;">warning</i>
+              <iconify-icon icon="material-symbols:warning" width="13" class="shrink-0 align-middle"></iconify-icon>
               No plugin.json — metadata unavailable
             </div>
           </div>
           <button class="btn btn-sm btn-ghost" style="color:#ef4444;"
                   (click)="confirmRemove(plugin)" title="Remove Plugin">
-            <i class="material-icons">delete</i>
+            <iconify-icon icon="material-symbols:delete" class="shrink-0"></iconify-icon>
           </button>
         </div>
       </div>

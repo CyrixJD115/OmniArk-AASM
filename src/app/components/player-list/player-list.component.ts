@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IpcService } from '../../core/services/ipc.service';
 import { NotificationService } from '../../core/services/notification.service';
@@ -10,6 +10,7 @@ interface Player {
 }
 
 @Component({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   selector: 'app-player-list',
   standalone: true,
   imports: [CommonModule],

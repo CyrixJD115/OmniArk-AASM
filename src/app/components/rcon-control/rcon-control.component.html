@@ -3,15 +3,13 @@
     <h2>RCON</h2>
     <div class="button-header-actions">
       <button class="btn btn-ghost" [disabled]="!rconConnected || serverState !== 'Running' || !rconMessage.trim()" (click)="$event.stopPropagation(); onSendMessage();">
-        <i class="material-icons">send</i> Send
+        <iconify-icon icon="material-symbols:send" class="shrink-0"></iconify-icon> Send
       </button>
-      <span class="material-icons">
-        {{ showRcon ? 'expand_more' : 'expand_less' }}
-      </span>
+      <iconify-icon icon="{{ showRcon ? 'material-symbols:expand-more' : 'material-symbols:expand-less' }}" class="shrink-0"></iconify-icon>
     </div>
   </div>
   <div class="card-body" *ngIf="showRcon">
-    <div class="rcon-status-row">
+    <div class="rcon-status-row flex items-center gap-2 text-sm mb-4">
       <span>Status:</span>
       <span class="status-badge" [ngClass]="{
         'status-running': rconConnected,
@@ -20,19 +18,18 @@
         {{ rconConnected ? 'Connected' : 'Disconnected' }}
       </span>
     </div>
-    <br />
-    <div class="rcon-send-row" *ngIf="rconConnected && serverState === 'Running'" style="position: relative; width: 100%;">
-      <div style="display: flex; gap: 0.5rem; align-items: center; width: 100%; position: relative;">
-        <input class="form-control input" style="flex: 1 1 auto;" [(ngModel)]="rconMessage" placeholder="Type RCON command or message..." (keyup.enter)="onSendMessage()" (focus)="onInputFocus()" (blur)="onInputBlur()" />
-        <div *ngIf="inputFocused" class="rcon-known-commands" style="position: absolute; left: 0; right: 0; top: 100%; background: #23272f; border: 1px solid #444; border-radius: 6px; z-index: 10; box-shadow: 0 2px 8px #0007; min-width: 220px; width: 100%;">
-          <div *ngFor="let cmd of knownCommands" (mousedown)="fillCommand(cmd)" style="padding: 0.5rem 1rem; cursor: pointer; color: #b0b6c1; font-size: 0.97em; white-space: pre;">
+    <div class="rcon-send-row relative w-full" *ngIf="rconConnected && serverState === 'Running'">
+      <div class="flex gap-2 items-center w-full relative">
+        <input class="form-control flex-1" [(ngModel)]="rconMessage" placeholder="Type RCON command or message..." (keyup.enter)="onSendMessage()" (focus)="onInputFocus()" (blur)="onInputBlur()" />
+        <div *ngIf="inputFocused" class="rcon-known-commands absolute left-0 right-0 top-full bg-[#23272f] border border-[#444] rounded-md z-10 shadow-lg min-w-[220px] w-full">
+          <div *ngFor="let cmd of knownCommands" (mousedown)="fillCommand(cmd)" class="px-4 py-2 cursor-pointer text-[#b0b6c1] text-sm whitespace-pre hover:bg-white/5">
             {{ cmd }}
           </div>
         </div>
       </div>
     </div>
-    <div *ngIf="lastResponse" class="rcon-response" style="background: #23272f; border: 1px solid #444; border-radius: 6px; margin-top: 1rem; padding: 0.75rem 1rem; color: #b0b6c1; font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace; font-size: 0.98em; white-space: pre-wrap; max-height: 300px; overflow-y: auto;">
-      <div style="font-weight: bold; color: #8ab4f8; margin-bottom: 0.25rem;">Last Response:</div>
+    <div *ngIf="lastResponse" class="rcon-response bg-[#23272f] border border-[#444] rounded-md mt-4 px-4 py-3 text-[#b0b6c1] font-mono text-sm whitespace-pre-wrap max-h-[300px] overflow-y-auto">
+      <div class="font-bold text-[#8ab4f8] mb-1">Last Response:</div>
       <div>{{ lastResponse }}</div>
     </div>
   </div>

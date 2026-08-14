@@ -4,34 +4,31 @@
     <div class="button-header-actions">
       <button class="btn" (click)="onStartServer($event)"
         [disabled]="!canStart">
-        <i class="material-icons">play_arrow</i> Start
+        <iconify-icon icon="material-symbols:play-arrow" class="shrink-0"></iconify-icon> Start
       </button>
       <button class="btn" (click)="onStopServer($event)" [disabled]="!canStop">
-        <i class="material-icons">stop</i> Stop
+        <iconify-icon icon="material-symbols:stop" class="shrink-0"></iconify-icon> Stop
       </button>
       <button class="btn" (click)="onForceStopServer($event)" [disabled]="!canForceStop">
-        <i class="material-icons">power_off</i> Force
+        <iconify-icon icon="material-symbols:power-settings-new" class="shrink-0"></iconify-icon> Force
       </button>
-      <span class="material-icons">
-        {{ isVisible ? 'expand_more' : 'expand_less' }}
-      </span>
+      <iconify-icon icon="{{ isVisible ? 'material-symbols:expand-more' : 'material-symbols:expand-less' }}" class="shrink-0"></iconify-icon>
     </div>
   </div>
   <div class="card-body" *ngIf="isVisible">
     <div class="server-state-header-row">
-      <span>Status:</span>
+      <span class="text-sm">Status:</span>
       <span class="status-badge" [ngClass]="statusClasses">
         {{ statusText }}
       </span>
-      <span class="players-indicator" *ngIf="serverInstance.state && serverInstance.state === 'Running' && maxPlayers !== null">
+      <span class="players-indicator font-mono text-sm" *ngIf="serverInstance.state && serverInstance.state === 'Running' && maxPlayers !== null">
         Players: {{ currentPlayers }} / {{ maxPlayers }}
       </span>
-      <span class="memory-indicator" *ngIf="serverInstance.state && serverInstance.state === 'Running' && memoryUsage">
+      <span class="memory-indicator font-mono text-sm" *ngIf="serverInstance.state && serverInstance.state === 'Running' && memoryUsage">
         Memory: {{ memoryUsage }} MB
       </span>
     </div>
-    <br />
-    <div *ngIf="serverMessage">
+    <div class="text-sm text-slate-400 mb-2" *ngIf="serverMessage">
       {{ serverMessage }}
     </div>
     <div class="console-log-container" #logContainer>

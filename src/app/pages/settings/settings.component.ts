@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { NotificationService } from '../../core/services/notification.service';
 import { UtilityService } from '../../core/services/utility.service';
 import { NgFor, NgIf, NgClass } from '@angular/common';
@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Component({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   selector: 'app-settings-page',
   standalone: true,
   imports: [NgFor, NgIf, NgClass, ModalComponent, FormsModule],
@@ -152,10 +153,10 @@ export class SettingsPageComponent {
   ) {
     this.isElectron = this.utility.getPlatform() === 'Electron';
     this.tabs = [
-      { id: 'server-installation', label: 'Server Installation', icon: 'dns', showUpdateBadge: false },
-      { id: 'general', label: 'General', icon: 'settings' },
-      ...(this.isElectron ? [{ id: 'web-server', label: 'Web Server', icon: 'cloud' }] : []),
-      { id: 'about', label: 'About', icon: 'info' }
+      { id: 'server-installation', label: 'Server Installation', icon: 'material-symbols:dns', showUpdateBadge: false },
+      { id: 'general', label: 'General', icon: 'material-symbols:settings' },
+      ...(this.isElectron ? [{ id: 'web-server', label: 'Web Server', icon: 'material-symbols:cloud' }] : []),
+      { id: 'about', label: 'About', icon: 'material-symbols:info' }
     ];
   }
 

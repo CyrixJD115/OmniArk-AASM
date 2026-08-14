@@ -1,46 +1,44 @@
-<div class="sidebar" style="display:flex;flex-direction:column;">
+<div class="sidebar">
   <div class="sidebar-header" (click)="showServers = !showServers">
-    <h3 style="margin:0;">Servers</h3>
-    <span class="material-icons" style="font-size:20px;user-select:none;">
-      {{ showServers ? 'expand_more' : 'chevron_right' }}
-    </span>
-    <div style="display:flex;gap:4px;margin-left:auto;" *ngIf="servers.length > 0" (click)="$event.stopPropagation()">
-      <button class="btn btn-ghost" title="Start All Servers" (click)="startAllServers()">
-        <i class="material-icons">play_arrow</i>
+    <h3>Servers</h3>
+    <iconify-icon icon="{{ showServers ? 'material-symbols:expand-more' : 'material-symbols:chevron-right' }}" width="20" class="shrink-0 select-none"></iconify-icon>
+    <div class="flex gap-1 ml-auto" *ngIf="servers.length > 0" (click)="$event.stopPropagation()">
+      <button class="btn btn-ghost btn-icon-only" title="Start All Servers" (click)="startAllServers()">
+        <iconify-icon icon="material-symbols:play-arrow" class="shrink-0"></iconify-icon>
       </button>
-      <button class="btn btn-ghost" title="Stop All Servers" (click)="stopAllServers()">
-        <i class="material-icons">stop</i>
+      <button class="btn btn-ghost btn-icon-only" title="Stop All Servers" (click)="stopAllServers()">
+        <iconify-icon icon="material-symbols:stop" class="shrink-0"></iconify-icon>
       </button>
     </div>
   </div>
-  
+
   <div class="sidebar-content" *ngIf="showServers">
     <div class="server-list" cdkDropList (cdkDropListDropped)="onDrop($event)">
-      <div 
-        *ngFor="let server of servers; trackBy: trackByServerId" 
+      <div
+        *ngFor="let server of servers; trackBy: trackByServerId"
         class="server-item" cdkDrag
         [class.selected]="selectedServerId === server.id"
         (click)="onServerClick(server)">
         <span class="server-status-icon" [ngClass]="getServerStatusClass(server)">
-          <i class="material-icons">{{ getServerStatusIcon(server) }}</i>
+          <iconify-icon icon="{{ getServerStatusIcon(server) }}" class="shrink-0"></iconify-icon>
         </span>
-        <span 
+        <span
           *ngIf="editingServerId !== server.id"
-          class="server-name" 
+          class="server-name"
           [class.editable]="!isServerBusy(server)"
           (dblclick)="onServerNameDoubleClick(server, $event)">
           {{ server.name }}
         </span>
-        <input 
+        <input
           *ngIf="editingServerId === server.id"
           type="text"
           class="form-control editing-server-name"
           [(ngModel)]="editingServerName"
           (keydown)="onServerNameKeydown($event, server)"
           (blur)="onServerNameBlur(server)">
-        <button 
+        <button
           *ngIf="servers.length > 1 && editingServerId !== server.id && (server.state || '').toLowerCase() === 'stopped'"
-          class="delete-server-btn" 
+          class="delete-server-btn"
           title="Delete Server"
           (click)="onDeleteServer(server, $event)">
           &#10006;
@@ -48,62 +46,62 @@
       </div>
     </div>
   </div>
-  
+
   <div class="sidebar-footer">
-    <button 
-      class="btn btn-ghost" 
+    <button
+      class="btn btn-ghost"
       (click)="onAddServerClick()"
       title="Add Server">
-      <i class="material-icons">add</i>
+      <iconify-icon icon="material-symbols:add" class="shrink-0"></iconify-icon>
       Add Server
     </button>
-    <button 
-      class="btn btn-ghost" 
+    <button
+      class="btn btn-ghost btn-icon-only"
       (click)="onSettingsClick()"
       title="Settings">
-      <i class="material-icons">settings</i>
+      <iconify-icon icon="material-symbols:settings" class="shrink-0"></iconify-icon>
     </button>
     <!-- Logout button for web mode when authentication is enabled -->
-    <button 
+    <button
       *ngIf="isWebMode && authenticationEnabled"
-      class="btn btn-ghost" 
+      class="btn btn-ghost btn-icon-only"
       (click)="onLogoutClick()"
       title="Logout">
-      <i class="material-icons">logout</i>
+      <iconify-icon icon="material-symbols:logout" class="shrink-0"></iconify-icon>
     </button>
   </div>
 </div>
 
-<app-modal 
-  [title]="'Add Server'" 
-  [show]="showAddModal" 
+<app-modal
+  [title]="'Add Server'"
+  [show]="showAddModal"
   (close)="onCancelAdd()">
-  
+
   <!-- Mode Selection -->
   <div class="form-group">
     <div class="tabs import-mode-selector">
-      <button 
-        type="button" 
-        class="btn tab" 
+      <button
+        type="button"
+        class="btn tab"
         [class.active]="importMode === 'create'"
         (click)="setImportMode('create')">
-        <i class="material-icons">add</i>
+        <iconify-icon icon="material-symbols:add" class="shrink-0"></iconify-icon>
         Create New Server
       </button>
-      <button 
-        type="button" 
-        class="btn tab" 
+      <button
+        type="button"
+        class="btn tab"
         [class.active]="importMode === 'import'"
         (click)="setImportMode('import')">
-        <i class="material-icons">file_upload</i>
+        <iconify-icon icon="material-symbols:file-upload" class="shrink-0"></iconify-icon>
         Import from Backup
       </button>
-      <button 
-        type="button" 
-        class="btn tab" 
+      <button
+        type="button"
+        class="btn tab"
         [class.active]="importMode === 'clone'"
         (click)="setImportMode('clone')">
-        <i class="material-icons">content_copy</i>
+        <iconify-icon icon="material-symbols:content-copy" class="shrink-0"></iconify-icon>
         Clone Existing Server
       </button>
     </div>
@@ -114,13 +112,13 @@
     <!-- Create New Server Form -->
     <div *ngIf="importMode === 'create'" class="form-group">
       <label class="form-control-label">Server Name</label>
-      <input 
-        #serverNameInput 
-        class="form-control" 
-        [(ngModel)]="serverName" 
-        name="serverName" 
-        required 
-        placeholder="Enter server name" 
+      <input
+        #serverNameInput
+        class="form-control"
+        [(ngModel)]="serverName"
+        name="serverName"
+        required
+        placeholder="Enter server name"
         (keyup.enter)="onAddServer()"/>
     </div>
 
@@ -128,35 +126,33 @@
     <div *ngIf="importMode === 'import'">
       <div class="form-group">
         <label class="form-control-label">Server Name</label>
-        <input 
-          class="form-control" 
-          [(ngModel)]="serverName" 
-          name="serverName" 
-          required 
+        <input
+          class="form-control"
+          [(ngModel)]="serverName"
+          name="serverName"
+          required
           placeholder="Enter server name"/>
       </div>
       <div class="form-group">
         <label class="form-control-label">Backup File</label>
         <div class="file-input-wrapper">
-          <input 
-            type="text" 
-            class="form-control" 
+          <input
+            type="text"
+            class="form-control flex-1"
             [(ngModel)]="selectedBackupFilePath"
-            placeholder="Enter file path or click Browse"
-            style="flex: 1;"/>
-          <button 
-            type="button" 
-            class="btn btn-ghost" 
-            (click)="selectBackupFile()"
-            style="margin-left: 8px;">
+            placeholder="Enter file path or click Browse"/>
+          <button
+            type="button"
+            class="btn btn-ghost ml-2"
+            (click)="selectBackupFile()">
             Browse
           </button>
         </div>
         <!-- Hidden file input for fallback -->
-        <input 
-          type="file" 
+        <input
+          type="file"
           accept=".zip"
-          style="display: none;"
+          class="hidden"
           (change)="onBackupFileSelect($event)"
           #backupFileInput/>
         <div class="form-control-label desc">Select a backup ZIP file to restore. You can type the path directly or click Browse.</div>
@@ -167,19 +163,19 @@
     <div *ngIf="importMode === 'clone'">
       <div class="form-group">
         <label class="form-control-label">New Server Name</label>
-        <input 
-          class="form-control" 
-          [(ngModel)]="serverName" 
-          name="serverName" 
-          required 
+        <input
+          class="form-control"
+          [(ngModel)]="serverName"
+          name="serverName"
+          required
           placeholder="Enter name for cloned server"/>
       </div>
       <div class="form-group">
         <label class="form-control-label">Clone From</label>
-        <select 
-          class="form-control" 
-          [(ngModel)]="selectedServerToClone" 
-          name="selectedServerToClone" 
+        <select
+          class="form-control"
+          [(ngModel)]="selectedServerToClone"
+          name="selectedServerToClone"
           required>
           <option [ngValue]="null">Select a server to clone...</option>
           <option *ngFor="let server of servers" [ngValue]="server">
@@ -191,21 +187,21 @@
     </div>
   </div>
 
-  <div class="action-group-modal" style="margin-top: 10px;">
+  <div class="action-group-modal mt-3">
     <button type="button" (click)="onCancelAdd()" class="btn btn-ghost">Cancel</button>
-    <button 
-      type="button" 
-      (click)="onAddServer()" 
-      [disabled]="!canAddServer()" 
+    <button
+      type="button"
+      (click)="onAddServer()"
+      [disabled]="!canAddServer()"
       class="btn btn-ghost">
       {{ importMode === 'create' ? 'Add' : importMode === 'import' ? 'Import' : 'Clone' }}
     </button>
   </div>
 </app-modal>
 
-<app-modal 
-  [title]="'Confirm Delete'" 
-  [show]="showConfirmDeleteModal" 
+<app-modal
+  [title]="'Confirm Delete'"
+  [show]="showConfirmDeleteModal"
   (close)="onCancelDelete()">
   <div class="modal-confirmation">
     Are you sure you want to delete <span class="modal-target">{{ serverToDelete?.name }}</span>?

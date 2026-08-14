@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, ChangeDetectionStrategy, OnInit, OnDestroy, ChangeDetectorRef, ApplicationRef, NgZone, ViewChild, ElementRef } from '@angular/core';
+import { Component, EventEmitter, Output, ChangeDetectionStrategy, OnInit, OnDestroy, ChangeDetectorRef, ApplicationRef, NgZone, ViewChild, ElementRef, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { Subscription, take } from 'rxjs';
 import { NgFor, NgIf, NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -14,6 +14,7 @@ import { GlobalConfigService } from '../../core/services/global-config.service';
 
 
 @Component({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   selector: 'app-sidebar',
   standalone: true,
   imports: [NgFor, NgIf, NgClass, ModalComponent, FormsModule, DragDropModule],
@@ -463,17 +464,17 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
     /**
-   * Returns the Material icon name for the given server state.
+   * Returns the Iconify icon name (material-symbols set) for the given server state.
    */
   getServerStatusIcon(server: ServerInstance): string {
     switch ((server.state || '').toLowerCase()) {
-      case 'running': return 'play_circle_filled';
-      case 'stopped': return 'stop_circle';
-      case 'queued': return 'schedule';
-      case 'starting': return 'hourglass_empty';
-      case 'stopping': return 'pause_circle_filled';
-      case 'error': return 'error';
-      default: return 'stop_circle';
+      case 'running': return 'material-symbols:play-circle';
+      case 'stopped': return 'material-symbols:stop-circle';
+      case 'queued': return 'material-symbols:schedule';
+      case 'starting': return 'material-symbols:hourglass-empty';
+      case 'stopping': return 'material-symbols:pause-circle';
+      case 'error': return 'material-symbols:error';
+      default: return 'material-symbols:stop-circle';
     }
   }
 

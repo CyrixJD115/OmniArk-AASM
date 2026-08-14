@@ -87,7 +87,7 @@
           <div class="custom-dropdown" [class.disabled]="isAutomationLocked || !serverInstance.scheduledRestartEnabled">
             <button type="button" class="form-control input" [disabled]="isAutomationLocked || !serverInstance.scheduledRestartEnabled" (click)="onToggleRestartFrequencyDropdown()">
               <span>{{ getRestartFrequencyDisplayName(serverInstance.restartFrequency) || 'Select frequency...' }}</span>
-              <span class="material-icons">arrow_drop_down</span>
+              <iconify-icon icon="material-symbols:arrow-drop-down" class="shrink-0"></iconify-icon>
             </button>
             <div *ngIf="restartFrequencyDropdownOpen && !isAutomationLocked && serverInstance.scheduledRestartEnabled" class="dropdown-menu show">
               <div *ngFor="let opt of getRestartFrequencyOptions()" (mousedown)="onRestartFrequencySelect(opt.value)" [ngClass]="{'selected': serverInstance.restartFrequency === opt.value}">{{ opt.display }}</div>

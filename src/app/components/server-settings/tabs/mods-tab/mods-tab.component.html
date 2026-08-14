@@ -1,6 +1,6 @@
 <!-- Mods Tab Content -->
 <div class="tab-content">
-  <div class="form-group" style="grid-column: 1 / -1;">
+  <div class="form-group col-span-full">
     <h4>Server Mod Management</h4>
     <p class="form-control-label desc">Add and manage CurseForge mods for your server. Enter mod IDs from the CurseForge to install and configure mods.</p>
   </div>
@@ -10,19 +10,19 @@
     <p class="section-desc">Add new mods and manage your current mod list.</p>
 
     <!-- Add Mod Section -->
-    <div class="form-group" style="grid-column: 1 / -1;">
-      <div style="display: flex; gap: 0.5rem; align-items: center;">
-        <button class="btn btn-ghost" (click)="openAddModModal()" [disabled]="isLocked" style="white-space: nowrap;">
-          <i class="material-icons">add</i> Add Mod
+    <div class="form-group col-span-full">
+      <div class="flex gap-2 items-center">
+        <button class="btn btn-ghost whitespace-nowrap" (click)="openAddModModal()" [disabled]="isLocked">
+          <iconify-icon icon="material-symbols:add" class="shrink-0"></iconify-icon> Add Mod
         </button>
-        <button class="btn btn-ghost" (click)="openBrowseModal()" style="white-space: nowrap;">
-          <i class="material-icons">travel_explore</i> Browse CurseForge
+        <button class="btn btn-ghost whitespace-nowrap" (click)="openBrowseModal()">
+          <iconify-icon icon="material-symbols:travel-explore" class="shrink-0"></iconify-icon> Browse CurseForge
         </button>
       </div>
     </div>
 
     <!-- Mod List Section -->
-    <div class="form-group mod-table-container" style="grid-column: 1 / -1;">
+    <div class="form-group mod-table-container col-span-full">
       <label class="form-control-label">Installed Mods</label>
       <div class="mod-list">
         <table class="mod-table">
@@ -31,7 +31,7 @@
             <th>Mod ID</th>
             <th>Mod Name</th>
             <th>Enabled</th>
-            <th style="text-align: right;">Actions</th>
+            <th class="text-right">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -39,7 +39,7 @@
             <td colspan="4" class="no-data">No mods installed</td>
           </tr>
           <tr *ngFor="let mod of modList; trackBy: trackByModId" class="table-row">
-            <td class="mod-id">{{ mod.id }}</td>
+            <td class="mod-id font-mono">{{ mod.id }}</td>
             <td class="mod-name">{{ mod.name || 'Loading...' }}</td>
             <td class="mod-status">
               <div class="form-control-label toggle-label">
@@ -48,11 +48,11 @@
               </div>
             </td>
             <td class="mod-actions">
-              <button class="btn btn-sm btn-ghost" (click)="openSettingsModal(mod)" [disabled]="isLocked" title="Mod Settings">
-                <i class="material-icons">settings</i>
+              <button class="btn btn-sm btn-ghost btn-icon-only" (click)="openSettingsModal(mod)" [disabled]="isLocked" title="Mod Settings">
+                <iconify-icon icon="material-symbols:settings" class="shrink-0"></iconify-icon>
               </button>
-              <button class="btn btn-sm btn-ghost" (click)="onRemoveMod(mod)" [disabled]="isLocked" title="Remove Mod">
-                <i class="material-icons">delete_outline</i>
+              <button class="btn btn-sm btn-ghost btn-icon-only" (click)="onRemoveMod(mod)" [disabled]="isLocked" title="Remove Mod">
+                <iconify-icon icon="material-symbols:delete-outline" class="shrink-0"></iconify-icon>
               </button>
             </td>
           </tr>
@@ -68,18 +68,17 @@
     <div class="modal-form">
       <div class="form-group">
         <label class="form-control-label">Mod ID</label>
-        <input class="form-control input" type="text" [(ngModel)]="newModId" placeholder="Enter CurseForge Mod ID (e.g., 123456789)" />
+        <input class="form-control" type="text" [(ngModel)]="newModId" placeholder="Enter CurseForge Mod ID (e.g., 123456789)" />
         <div class="form-control-label desc">The numeric ID from the mod's CurseForge page URL.</div>
       </div>
-      <br />
       <div class="form-group">
         <label class="form-control-label">Mod Name</label>
-        <input class="form-control input" type="text" [(ngModel)]="newModName" placeholder="Enter mod name (e.g., Structures Plus)" />
+        <input class="form-control" type="text" [(ngModel)]="newModName" placeholder="Enter mod name (e.g., Structures Plus)" />
         <div class="form-control-label desc">A descriptive name for the mod.</div>
       </div>
-      
+
       <div class="action-group-modal">
-        <button class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+        <button class="btn" (click)="closeModal()">Cancel</button>
         <button class="btn btn-primary" (click)="onAddMod()" [disabled]="!newModId || !newModName">Add Mod</button>
       </div>
     </div>
@@ -92,38 +91,36 @@
       <!-- Search & Sort Bar -->
       <div class="cf-browser-header">
         <div class="cf-search-bar">
-          <input class="form-control input" type="text"
+          <input class="form-control flex-1" type="text"
             [(ngModel)]="cfSearchQuery"
             (keydown.enter)="searchCurseForge()"
             placeholder="Search mods (e.g. Structures Plus)…" />
           <!-- Sort custom dropdown matching map selector style -->
-          <div class="custom-dropdown" style="position: relative; flex-shrink: 0;">
-            <button type="button" class="form-control input" (click)="cfSortDropdownOpen = !cfSortDropdownOpen"
-              style="width: 160px; text-align: left; background: #23272f; border: 1px solid #444; border-radius: 6px; color: #b0b6c1; padding: 0.5rem 1rem; font-size: 0.97em; display: flex; align-items: center; justify-content: space-between; white-space: nowrap;">
+          <div class="custom-dropdown relative shrink-0">
+            <button type="button" class="form-control w-40 text-left flex items-center justify-between whitespace-nowrap" (click)="cfSortDropdownOpen = !cfSortDropdownOpen">
               <span>{{ cfSortLabel }}</span>
-              <span class="material-icons" style="font-size: 1.1em;">arrow_drop_down</span>
+              <iconify-icon icon="material-symbols:arrow-drop-down" class="shrink-0"></iconify-icon>
             </button>
-            <div *ngIf="cfSortDropdownOpen" class="dropdown-menu show"
-              style="position: absolute; left: 0; right: 0; top: 100%; background: #23272f; border: 1px solid #444; border-radius: 6px; z-index: 20; width: 100%; margin-top: 0.1rem;">
+            <div *ngIf="cfSortDropdownOpen" class="dropdown-menu show absolute left-0 right-0 top-full bg-[#23272f] border border-[#444] rounded-md z-20 w-full mt-0.5">
               <div *ngFor="let opt of cfSortOptions" (mousedown)="selectCfSort(opt.value)"
-                style="padding: 0.5rem 1rem; cursor: pointer; color: #b0b6c1; font-size: 0.97em;"
+                class="px-4 py-2 cursor-pointer text-[#b0b6c1] text-sm hover:bg-white/5"
                 [ngClass]="{'selected': cfSortField === opt.value}">{{ opt.label }}</div>
             </div>
           </div>
-          <button class="btn btn-ghost" (click)="searchCurseForge()" [disabled]="cfSearching">
-            <i class="material-icons">{{ cfSearching ? 'hourglass_empty' : 'search' }}</i>
+          <button class="btn btn-ghost btn-icon-only" (click)="searchCurseForge()" [disabled]="cfSearching">
+            <iconify-icon icon="{{ cfSearching ? 'material-symbols:hourglass-empty' : 'material-symbols:search' }}" class="shrink-0"></iconify-icon>
           </button>
         </div>
-        <div class="form-control-label desc" style="margin-top: 0.4rem;">Results filtered to ARK: Survival Ascended.</div>
+        <div class="form-control-label desc mt-2">Results filtered to ARK: Survival Ascended.</div>
       </div>
 
       <!-- API Access Error Banner -->
       <div *ngIf="cfError" class="cf-error-banner" [class.cf-error-banner--access]="cfIsAccessError">
-        <i class="material-icons">{{ cfIsAccessError ? 'lock' : 'error_outline' }}</i>
+        <iconify-icon icon="{{ cfIsAccessError ? 'material-symbols:lock' : 'material-symbols:error-outline' }}" class="shrink-0"></iconify-icon>
         <div class="cf-error-text">
           <span>{{ cfError }}</span>
           <a *ngIf="cfIsAccessError" class="cf-website-link" (click)="openUrl('https://www.curseforge.com/ark-survival-ascended')">
-            <i class="material-icons" style="font-size:1rem;vertical-align:middle;">open_in_new</i>
+            <iconify-icon icon="material-symbols:open-in-new" width="16" class="shrink-0 align-middle"></iconify-icon>
             Browse mods on CurseForge.com
           </a>
         </div>
@@ -131,13 +128,13 @@
 
       <!-- Loading spinner -->
       <div *ngIf="cfSearching && cfSearchResults.length === 0" class="cf-loading">
-        <i class="material-icons cf-spin">autorenew</i>
+        <iconify-icon icon="material-symbols:autorenew" class="cf-spin shrink-0"></iconify-icon>
         <span>Loading mods…</span>
       </div>
 
       <!-- Empty state -->
       <div *ngIf="!cfSearching && cfSearchResults.length === 0 && cfSearchQuery" class="cf-empty">
-        <i class="material-icons">search_off</i>
+        <iconify-icon icon="material-symbols:search-off" class="shrink-0"></iconify-icon>
         <span>No mods found for "{{ cfSearchQuery }}"</span>
       </div>
 
@@ -149,10 +146,10 @@
           <div class="cf-card-img-wrap">
             <img *ngIf="mod.screenshotUrl || mod.thumbUrl" [src]="mod.screenshotUrl || mod.thumbUrl" class="cf-card-img" alt="" loading="lazy" />
             <div *ngIf="!mod.screenshotUrl && !mod.thumbUrl" class="cf-card-img cf-card-img--placeholder">
-              <i class="material-icons">extension</i>
+              <iconify-icon icon="material-symbols:extension" class="shrink-0"></iconify-icon>
             </div>
             <span *ngIf="isModInstalled(mod.id)" class="cf-installed-badge">
-              <i class="material-icons">check</i> Installed
+              <iconify-icon icon="material-symbols:check" class="shrink-0"></iconify-icon> Installed
             </span>
           </div>
 
@@ -168,19 +165,19 @@
           <!-- Footer -->
           <div class="cf-card-footer">
             <span class="cf-card-downloads">
-              <i class="material-icons">download</i>
+              <iconify-icon icon="material-symbols:download" class="shrink-0"></iconify-icon>
               {{ mod.downloadCount | number }}
             </span>
             <span class="cf-card-author" [title]="mod.authors">{{ mod.authors }}</span>
             <div class="cf-card-actions">
-              <button *ngIf="mod.websiteUrl" class="btn btn-sm btn-ghost" (click)="openUrl(mod.websiteUrl)" title="View on CurseForge">
-                <i class="material-icons">open_in_new</i>
+              <button *ngIf="mod.websiteUrl" class="btn btn-sm btn-ghost btn-icon-only" (click)="openUrl(mod.websiteUrl)" title="View on CurseForge">
+                <iconify-icon icon="material-symbols:open-in-new" class="shrink-0"></iconify-icon>
               </button>
-              <button *ngIf="!isModInstalled(mod.id)" class="btn btn-sm btn-ghost" (click)="addModFromCurseForge(mod)" title="Add to server">
-                <i class="material-icons">add</i>
+              <button *ngIf="!isModInstalled(mod.id)" class="btn btn-sm btn-ghost btn-icon-only" (click)="addModFromCurseForge(mod)" title="Add to server">
+                <iconify-icon icon="material-symbols:add" class="shrink-0"></iconify-icon>
               </button>
               <span *ngIf="isModInstalled(mod.id)" class="cf-added-check" title="Already added">
-                <i class="material-icons">check_circle</i>
+                <iconify-icon icon="material-symbols:check-circle" class="shrink-0"></iconify-icon>
               </span>
             </div>
           </div>
@@ -189,9 +186,9 @@
       </div>
 
       <!-- Footer actions -->
-      <div class="action-group-modal" style="margin-top: 1rem;">
+      <div class="action-group-modal mt-4">
         <button *ngIf="cfHasMore" class="btn btn-ghost" (click)="cfLoadMore()" [disabled]="cfSearching">
-          {{ cfSearching ? 'Loading\u2026' : 'Load More' }}
+          {{ cfSearching ? 'Loading…' : 'Load More' }}
         </button>
         <button class="btn btn-ghost" (click)="closeBrowseModal()">Close</button>
       </div>
@@ -205,9 +202,9 @@
         <label class="form-control-label">Mod Settings</label>
         <div class="mod-settings-editor">
           <div *ngFor="let setting of objectKeys(modSettings); trackBy: trackBySetting" class="setting-row">
-            <input 
-              class="form-control input setting-key" 
-              type="text" 
+            <input
+              class="form-control setting-key"
+              type="text"
               [value]="editingKey === setting ? tempKeyValue : setting"
               (focus)="startEditingKey(setting)"
               (input)="tempKeyValue = $any($event.target).value"
@@ -215,20 +212,20 @@
               (keydown.enter)="finishEditingKey(setting)"
               (keydown.escape)="cancelEditingKey()"
               placeholder="Setting name" />
-            <input class="form-control input setting-value" type="text" [(ngModel)]="modSettings[setting]" placeholder="Setting value" />
-            <button class="btn btn-sm btn-ghost" (click)="removeSetting(setting)" title="Remove Setting">
-              <i class="material-icons">remove</i>
+            <input class="form-control setting-value" type="text" [(ngModel)]="modSettings[setting]" placeholder="Setting value" />
+            <button class="btn btn-sm btn-ghost btn-icon-only" (click)="removeSetting(setting)" title="Remove Setting">
+              <iconify-icon icon="material-symbols:remove" class="shrink-0"></iconify-icon>
             </button>
           </div>
-          <button class="btn btn-sm btn-secondary" (click)="addSetting()" style="margin-top: 0.5rem;">
-            <i class="material-icons">add</i> Add Setting
+          <button class="btn btn-sm mt-2" (click)="addSetting()">
+            <iconify-icon icon="material-symbols:add" class="shrink-0"></iconify-icon> Add Setting
           </button>
         </div>
         <div class="form-control-label desc">Configure custom settings for this mod. These will be written to the mod's INI section.</div>
       </div>
-      
+
       <div class="action-group-modal">
-        <button class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+        <button class="btn" (click)="closeModal()">Cancel</button>
         <button class="btn btn-primary" (click)="saveModSettings()">Save Settings</button>
       </div>
     </div>

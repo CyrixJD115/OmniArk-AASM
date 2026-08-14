@@ -13,7 +13,7 @@
       <!-- Mobile Header -->
       <div *ngIf="isMobile" class="mobile-header">
         <button class="mobile-menu-btn" (click)="toggleMobileMenu()" [attr.aria-label]="isMobileMenuOpen ? 'Close menu' : 'Open menu'">
-          <span class="material-icons">{{ isMobileMenuOpen ? 'close' : 'menu' }}</span>
+          <iconify-icon icon="{{ isMobileMenuOpen ? 'material-symbols:close' : 'material-symbols:menu' }}"></iconify-icon>
         </button>
         <div class="mobile-header-title">OmniArk</div>
       </div>

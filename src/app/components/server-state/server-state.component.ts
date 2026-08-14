@@ -1,7 +1,8 @@
-import { Component, Input, Output, EventEmitter, ViewChild, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, ElementRef, OnChanges, SimpleChanges, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { NgIf, NgClass, NgFor } from '@angular/common';
 
 @Component({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   selector: 'app-server-state',
   standalone: true,
   imports: [NgIf, NgClass, NgFor],
