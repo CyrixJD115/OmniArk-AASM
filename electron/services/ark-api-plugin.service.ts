@@ -104,7 +104,7 @@ export class ArkApiPluginService {
     return new Promise((resolve, reject) => {
       const req = https.get(
         ASAAPI_RELEASES_URL,
-        { headers: { 'User-Agent': 'Cerious-AASM' } },
+        { headers: { 'User-Agent': 'OmniArk-AASM' } },
         (res) => {
           let data = '';
           res.on('data', (chunk) => (data += chunk));
@@ -193,7 +193,7 @@ export class ArkApiPluginService {
     return new Promise((resolve, reject) => {
       const file = fs.createWriteStream(dest);
       const get = (redirectUrl: string) => {
-        https.get(redirectUrl, { headers: { 'User-Agent': 'Cerious-AASM' } }, (res) => {
+        https.get(redirectUrl, { headers: { 'User-Agent': 'OmniArk-AASM' } }, (res) => {
           if (res.statusCode === 301 || res.statusCode === 302) {
             return get(res.headers.location!);
           }

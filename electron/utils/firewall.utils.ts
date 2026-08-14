@@ -19,7 +19,7 @@ interface FirewallStatus {
   error?: string;
 }
 
-const APP_NAME = 'Cerious AASM';
+const APP_NAME = 'OmniArk AASM';
 const ARK_SERVER_RULE_PREFIX = 'ARK Server';
 
 /**

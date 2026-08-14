@@ -1,11 +1,11 @@
-# Cerious-AASM  
+# OmniArk-AASM  
 **Ark: Survival Ascended Server Manager (Desktop + Headless)**  
 
 ## Overview
-Cerious-AASM is a desktop application for managing ARK: Survival Ascended dedicated servers. It provides a user-friendly interface for installing, configuring, and controlling ARK servers on your machine. The application supports both desktop (GUI) and headless (web-based) modes.
+OmniArk-AASM is a desktop application for managing ARK: Survival Ascended dedicated servers. It provides a user-friendly interface for installing, configuring, and controlling ARK servers on your machine. The application supports both desktop (GUI) and headless (web-based) modes.
 
 ## Join on Discord
-- Cerious - AASM https://discord.gg/n5SxyDRPAa
+- OmniArk - AASM https://discord.gg/n5SxyDRPAa
 
 ## Features
 - Install and update ARK servers using SteamCMD
@@ -88,7 +88,7 @@ cerious-aasm --no-sandbox --headless --port=5000 --auth-enabled --password=mypas
 - You must have a valid Steam account and comply with Studio Wildcard's terms of service.
 
 ## Legal & Compliance Notice
-- Cerious-AASM does **not** redistribute, modify, or bundle any copyrighted ARK: Survival Ascended files.
+- OmniArk-AASM does **not** redistribute, modify, or bundle any copyrighted ARK: Survival Ascended files.
 - All downloads are performed via the official SteamCMD tool, directly from Steam's servers.
 - Users are responsible for ensuring they have the right to run ARK servers and for complying with all relevant EULAs and terms of service.
 - This tool is intended for legitimate server management only.
@@ -109,9 +109,9 @@ cerious-aasm --no-sandbox --headless --port=5000 --auth-enabled --password=mypas
 ---
 
 ## 🚀 Overview  
-**Cerious-AASM** is a cross-platform tool for hosting and managing **ARK: Survival Ascended** dedicated servers.  
+**OmniArk-AASM** is a cross-platform tool for hosting and managing **ARK: Survival Ascended** dedicated servers.  
 
-It’s **free**, **open-source**, and offers **first-class Linux support**. Whether you’re running a desktop server at home or deploying headless on a Linux host, Cerious-AASM makes server management simple, reliable, and automated.  
+It’s **free**, **open-source**, and offers **first-class Linux support**. Whether you’re running a desktop server at home or deploying headless on a Linux host, OmniArk-AASM makes server management simple, reliable, and automated.  
 
 ---
 
@@ -119,7 +119,7 @@ It’s **free**, **open-source**, and offers **first-class Linux support**. Whet
 
 - 🖥️ **Cross-Platform** – Works seamlessly on **Windows** and **Linux**  
 - ⚙️ **Server Automation**  
-  - 🔄 **Auto Start** – Servers launch automatically with Cerious-AASM  
+  - 🔄 **Auto Start** – Servers launch automatically with OmniArk-AASM  
   - 💥 **Crash Recovery** – Detects crashes and auto-restarts servers  
   - ⏰ **Scheduled Restarts** – Keep servers fresh with automated restart schedules  
 - 📦 **Mod Support** – Easy install & update, with support for `-automanagemods`  
@@ -135,7 +135,7 @@ It’s **free**, **open-source**, and offers **first-class Linux support**. Whet
 ## 🎯 Use Cases  
 
 ### Desktop Mode  
-Run Cerious-AASM with a full GUI — perfect for personal or LAN servers.  
+Run OmniArk-AASM with a full GUI — perfect for personal or LAN servers.  
 
 ### Headless Mode (Remote / Server)  
 Run in **web mode** for browser-based management on a VPS or dedicated box:  
@@ -178,13 +178,13 @@ npm run headless -- --auth-enabled --username=admin --password=secret
 
 ## ⚖️ Legal & Compliance  
 
-- Cerious-AASM uses **SteamCMD** for downloading ARK: Survival Ascended servers  
+- OmniArk-AASM uses **SteamCMD** for downloading ARK: Survival Ascended servers  
 - No ARK game files are bundled or redistributed  
 - Not affiliated with Studio Wildcard or Valve  
 
 ---
 
-## 💡 Why Choose Cerious-AASM?  
+## 💡 Why Choose OmniArk-AASM?  
 
 - ✅ **Free & Open-Source** — MIT licensed, community-driven  
 - ✅ **Cross-Platform** — full support for both Linux & Windows  

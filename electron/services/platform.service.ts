@@ -41,13 +41,13 @@ export class PlatformService {
     try {
       if (app && typeof app.getPath === 'function') {
         const base = app.getPath('appData') || app.getPath('userData');
-        return path.join(base, 'Cerious AASM');
+        return path.join(base, 'OmniArk AASM');
       }
       const platform = process.platform;
       const home = os.homedir();
-      if (platform === 'win32') return path.join(home, 'AppData', 'Roaming', 'Cerious AASM');
-      if (platform === 'linux') return path.join(home, '.config', 'Cerious AASM');
-      if (platform === 'darwin') return path.join(home, 'Library', 'Application Support', 'Cerious AASM');
+      if (platform === 'win32') return path.join(home, 'AppData', 'Roaming', 'OmniArk AASM');
+      if (platform === 'linux') return path.join(home, '.config', 'OmniArk AASM');
+      if (platform === 'darwin') return path.join(home, 'Library', 'Application Support', 'OmniArk AASM');
     } catch (e) {
       // fallback
     }

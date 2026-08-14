@@ -11,7 +11,7 @@ Starting with ARK: Survival Ascended Server version **83.21**, the dedicated ser
 - Last log entry before freeze: `[LogSentrySdk: Verbose: request handled in XXXms]`
 - Server consumes minimal CPU and appears completely hung
 - No error messages or crash dumps generated
-- Issue affects **ALL** versions of Cerious AASM (not application-specific)
+- Issue affects **ALL** versions of OmniArk AASM (not application-specific)
 
 ### Root Cause
 ARK Server v83.21+ introduced incompatibilities with Wine/Proton's Windows compatibility layer:
@@ -23,7 +23,7 @@ ARK Server v83.21+ introduced incompatibilities with Wine/Proton's Windows compa
 
 ## The Fix
 
-Cerious AASM now automatically applies Wine/Proton compatibility fixes on Linux:
+OmniArk AASM now automatically applies Wine/Proton compatibility fixes on Linux:
 
 ### 1. Wine DLL Overrides
 **File**: `electron/utils/ark/ark-server/ark-server-paths.utils.ts`
@@ -76,7 +76,7 @@ If these flags cause issues with your specific setup, you can disable them:
 
 After applying the fix, verify the server starts successfully:
 
-1. Start your ARK server through Cerious AASM
+1. Start your ARK server through OmniArk AASM
 2. Monitor the log file: `~/.local/share/cerious-aasm/AASMServer/ShooterGame/Saved/Logs/ShooterGame.log`
 3. Server should progress past the Sentry initialization line
 4. Look for startup completion indicators like:
@@ -110,8 +110,8 @@ If the server runs but has performance problems:
 
 ### Why This Affects All Versions
 
-The freeze is caused by the **ARK Server executable itself** (version 83.21+), not Cerious AASM code. This means:
-- Rolling back Cerious AASM versions doesn't help
+The freeze is caused by the **ARK Server executable itself** (version 83.21+), not OmniArk AASM code. This means:
+- Rolling back OmniArk AASM versions doesn't help
 - The issue persists until ARK Server is downgraded or Wine/Proton is fixed
 - All server management tools running ARK under Wine are affected
 

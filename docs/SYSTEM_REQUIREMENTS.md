@@ -1,4 +1,4 @@
-# System Requirements - Cerious AASM
+# System Requirements - OmniArk AASM
 
 ## Table of Contents
 1. [Minimum Requirements](#minimum-requirements)
@@ -102,7 +102,7 @@
 ### Memory (RAM)
 **Allocation Guide**:
 - **System Overhead**: 2-4 GB for operating system
-- **Application**: 1-2 GB for Cerious AASM
+- **Application**: 1-2 GB for OmniArk AASM
 - **Per ARK Server**: 4-8 GB (depends on player count and mods)
 
 **Player Count to RAM Mapping**:

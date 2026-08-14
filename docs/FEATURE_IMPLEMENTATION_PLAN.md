@@ -1,6 +1,6 @@
 # Feature Implementation Plan & Gap Analysis
 
-Based on user feedback (Power User / Cluster Admin) and a code analysis of the current `Cerious-AASM` codebase (Angular 19+ Frontend, Electron Backend).
+Based on user feedback (Power User / Cluster Admin) and a code analysis of the current `OmniArk-AASM` codebase (Angular 19+ Frontend, Electron Backend).
 
 ## Current State Analysis
 

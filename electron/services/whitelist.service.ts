@@ -59,7 +59,7 @@ export class WhitelistService {
         '# ARK: Survival Ascended Exclusive Join List',
         '# One EOS/Player ID per line',
         '# Lines starting with # are comments and will be ignored',
-        '# This file is managed by Cerious AASM',
+        '# This file is managed by OmniArk AASM',
         '',
         ...playerIds.filter(id => id && id.trim().length > 0)
       ].join('\n');
@@ -271,7 +271,7 @@ export class WhitelistService {
           '# ARK: Survival Ascended Exclusive Join List',
           '# One EOS/Player ID per line',
           '# Lines starting with # are comments and will be ignored',
-          '# This file is managed by Cerious AASM',
+          '# This file is managed by OmniArk AASM',
           ''
         ].join('\n'), 'utf8');
         return {

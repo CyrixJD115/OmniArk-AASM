@@ -1,4 +1,4 @@
-# Installation Guide - Cerious AASM
+# Installation Guide - OmniArk AASM
 
 ## System Requirements
 
@@ -28,16 +28,16 @@
 
 1. **Download the Installer**
    - Go to the [latest release page](https://github.com/cerious/cerious-aasm/releases/latest)
-   - Download `Cerious AASM Setup X.X.X.exe`
+   - Download `OmniArk AASM Setup X.X.X.exe`
 
 2. **Run the Installer**
    - Right-click the downloaded file and select "Run as administrator"
    - Follow the installation wizard
-   - Choose your installation directory (default: `C:\Program Files\Cerious AASM`)
+   - Choose your installation directory (default: `C:\Program Files\OmniArk AASM`)
    - The installer will create desktop and start menu shortcuts
 
 3. **First Launch**
-   - Launch "Cerious AASM" from the desktop shortcut or start menu
+   - Launch "OmniArk AASM" from the desktop shortcut or start menu
    - The application will perform initial setup automatically
    - SteamCMD will be downloaded and configured on first run
 
@@ -67,32 +67,32 @@
 
 1. **Download AppImage**
    - Go to the [latest release page](https://github.com/cerious/cerious-aasm/releases/latest)
-   - Download `Cerious-AASM-X.X.X.AppImage`
+   - Download `OmniArk-AASM-X.X.X.AppImage`
 
 2. **Make Executable and Run**
    ```bash
-   chmod +x Cerious-AASM-*.AppImage
-   ./Cerious-AASM-*.AppImage
+   chmod +x OmniArk-AASM-*.AppImage
+   ./OmniArk-AASM-*.AppImage
    ```
 
    If you see a `chrome-sandbox` / SUID sandbox FATAL on Ubuntu 24.04 with an
    older AppImage, launch with:
    ```bash
-   ./Cerious-AASM-*.AppImage --no-sandbox --disable-setuid-sandbox
+   ./OmniArk-AASM-*.AppImage --no-sandbox --disable-setuid-sandbox
    # or:
-   ELECTRON_DISABLE_SANDBOX=1 ./Cerious-AASM-*.AppImage
+   ELECTRON_DISABLE_SANDBOX=1 ./OmniArk-AASM-*.AppImage
    ```
    Current builds include these flags automatically.
 
 3. **Optional: Desktop Integration**
    ```bash
    # Move to applications directory
-   sudo mv Cerious-AASM-*.AppImage /opt/cerious-aasm.AppImage
+   sudo mv OmniArk-AASM-*.AppImage /opt/cerious-aasm.AppImage
    
    # Create desktop entry
    cat > ~/.local/share/applications/cerious-aasm.desktop << EOF
    [Desktop Entry]
-   Name=Cerious AASM
+   Name=OmniArk AASM
    Exec=/opt/cerious-aasm.AppImage --no-sandbox --disable-setuid-sandbox
    Icon=cerious-aasm
    Type=Application
@@ -172,7 +172,7 @@
 
 ### Command Line Usage (Headless Mode)
 
-Cerious AASM can run as a headless background service, exposing a web REST API
+OmniArk AASM can run as a headless background service, exposing a web REST API
 instead of launching a GUI window.  **On Linux, Electron requires a display
 connection (X11 or Wayland) at the native level even when running headless.**
 Use `xvfb-run` to provide a virtual framebuffer on servers with no physical display.
@@ -216,7 +216,7 @@ cerious-aasm-headless-appimage.sh --auth-enabled --password=yourpassword --port=
 
 ```ini
 [Unit]
-Description=Cerious AASM headless service
+Description=OmniArk AASM headless service
 After=network.target
 
 [Service]

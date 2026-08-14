@@ -283,7 +283,7 @@ function createWindow() {
 // Application Event Handlers
 // =========================
 app.on('ready', async () => {
-  console.info(`[main] ====== Cerious AASM starting — log: ${getLogFilePath()} ======`);
+  console.info(`[main] ====== OmniArk AASM starting — log: ${getLogFilePath()} ======`);
 
   // Clear ARK log files before starting servers
   LogService.clearArkLogFiles();

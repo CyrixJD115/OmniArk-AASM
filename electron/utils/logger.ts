@@ -25,7 +25,7 @@ log.transports.file.resolvePathFn = () => {
   } catch {
     // app not ready yet — fall back to a reasonable default
     const home = process.env.HOME || process.env.USERPROFILE || '/tmp';
-    return path.join(home, '.config', 'Cerious AASM', 'logs', 'cerious-aasm.log');
+    return path.join(home, '.config', 'OmniArk AASM', 'logs', 'cerious-aasm.log');
   }
 };
 

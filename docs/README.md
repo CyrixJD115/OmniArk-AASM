@@ -1,6 +1,6 @@
-# Documentation Index - Cerious AASM
+# Documentation Index - OmniArk AASM
 
-Welcome to the Cerious AASM documentation! This index provides an overview of all available documentation and guides you to the information you need.
+Welcome to the OmniArk AASM documentation! This index provides an overview of all available documentation and guides you to the information you need.
 
 ## 📚 Documentation Overview
 

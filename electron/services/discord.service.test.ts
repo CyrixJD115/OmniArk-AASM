@@ -57,7 +57,7 @@ describe('DiscordService', () => {
       expect(mockAxios.post).toHaveBeenCalledWith(
         'https://discord.com/api/webhooks/123/abc',
         expect.objectContaining({
-          username: 'Cerious AASM',
+          username: 'OmniArk AASM',
           embeds: expect.arrayContaining([
             expect.objectContaining({
               title: expect.stringContaining('Test Server'),

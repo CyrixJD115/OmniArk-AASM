@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to Cerious AASM (ARK: Survival Ascended Server Manager) will be documented in this file.
+All notable changes to OmniArk AASM (ARK: Survival Ascended Server Manager) will be documented in this file.
 
 ## [Unreleased]
 
@@ -120,7 +120,7 @@ save data is moved.
 ### Bug Fixes
 
 - **PvE Mode Not Working**: The "PvE Mode" toggle only wrote `bPvE=True` to `GameUserSettings.ini`, which is not sufficient to enable PvE in ASA. The actual PvE switch (`ServerPVE=True` in `Game.ini`) was mapped in the backend but never exposed in the UI. A new **Server PvE (Game.ini)** toggle is now available in Misc → Game Mode. Both toggles should be enabled together for a fully PvE server.
-- **Update Download Failure — Filename Mismatch**: The built installer was named `Cerious AASM Setup ${version}.exe` (spaces) while `latest.yml` referenced `Cerious-AASM-Setup-${version}.exe` (hyphens). electron-updater requested the hyphenated filename, received a 404 from GitHub Releases, and the download silently failed — the update banner would disappear with no feedback. An explicit `artifactName` is now set in the electron-builder config (`Cerious-AASM-Setup-${version}.${ext}`) so the built file matches the URL in `latest.yml` exactly.
+- **Update Download Failure — Filename Mismatch**: The built installer was named `OmniArk AASM Setup ${version}.exe` (spaces) while `latest.yml` referenced `OmniArk-AASM-Setup-${version}.exe` (hyphens). electron-updater requested the hyphenated filename, received a 404 from GitHub Releases, and the download silently failed — the update banner would disappear with no feedback. An explicit `artifactName` is now set in the electron-builder config (`OmniArk-AASM-Setup-${version}.${ext}`) so the built file matches the URL in `latest.yml` exactly.
 - **Update Banner Download Error Not Shown**: When the update download failed, the banner would silently close instead of showing an error. The banner now shows an error state with the failure message and a Retry button. Additionally, the banner immediately transitions to the downloading state when the button is clicked (rather than waiting for the first `download-progress` event).
 
 ## [1.0.9] - 2026-03-11
@@ -184,7 +184,7 @@ save data is moved.
 ### New Features
 
 - **CurseForge Mod Browser**: Browse and search ARK: Survival Ascended mods directly within the app from the Mods tab. Features a card grid layout with mod thumbnails, category tags, download counts, author names, and per-card "Add to server" and "View on CurseForge" buttons. Sort options include Popular, Most Downloaded, Recently Updated, A–Z Name, and Featured. An installed badge highlights mods already on the server. Because ARK:SA is a restricted game on the CurseForge API (third-party keys receive a 403), a clear inline error banner explains the restriction and provides a one-click link to browse the full mod catalogue on CurseForge.com.
-- **Professional Application Logging**: Integrated `electron-log` for structured, timestamped, level-aware logging in the Electron main process. All existing `console.*` output is automatically captured and written to `%APPDATA%\Cerious-AASM\logs\cerious-aasm.log` on Windows (`~/.config/Cerious-AASM/logs/cerious-aasm.log` on Linux) with 10 MB auto-rotation. Log level is `debug` in development and `info` in production. A startup banner logs the active log file path.
+- **Professional Application Logging**: Integrated `electron-log` for structured, timestamped, level-aware logging in the Electron main process. All existing `console.*` output is automatically captured and written to `%APPDATA%\OmniArk-AASM\logs\cerious-aasm.log` on Windows (`~/.config/OmniArk-AASM/logs/cerious-aasm.log` on Linux) with 10 MB auto-rotation. Log level is `debug` in development and `info` in production. A startup banner logs the active log file path.
 
 ### Improvements
 
@@ -195,7 +195,7 @@ save data is moved.
 
 ### Bug Fixes
 
-- **Linux: ARK Server Freeze at Startup (Wine/Proton)**: Fixed critical issue where ARK Server v83.21+ would freeze during Sentry SDK initialization when running under Wine/Proton on Linux. Added Wine-specific DLL overrides for networking/crypto libraries (`winhttp`, `bcrypt`, `crypt32`) and Unreal Engine compatibility flags (`-NoHangDetection`, `-NOSTEAM`, `-norhithread`) to prevent hang detection and Steam API conflicts. This issue affected all versions of Cerious AASM after ARK Server updated to v83.21.
+- **Linux: ARK Server Freeze at Startup (Wine/Proton)**: Fixed critical issue where ARK Server v83.21+ would freeze during Sentry SDK initialization when running under Wine/Proton on Linux. Added Wine-specific DLL overrides for networking/crypto libraries (`winhttp`, `bcrypt`, `crypt32`) and Unreal Engine compatibility flags (`-NoHangDetection`, `-NOSTEAM`, `-norhithread`) to prevent hang detection and Steam API conflicts. This issue affected all versions of OmniArk AASM after ARK Server updated to v83.21.
 
 ## [1.0.2] - 2026-03-01
 

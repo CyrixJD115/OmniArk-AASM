@@ -1,4 +1,4 @@
-# Troubleshooting Guide - Cerious AASM
+# Troubleshooting Guide - OmniArk AASM
 
 ## Table of Contents
 1. [Common Issues](#common-issues)
@@ -53,7 +53,7 @@
 2. **Firewall Configuration**:
    ```powershell
    # Windows PowerShell (as Administrator)
-   New-NetFirewallRule -DisplayName "Cerious AASM" -Direction Inbound -Protocol TCP -LocalPort 27015-27020 -Action Allow
+   New-NetFirewallRule -DisplayName "OmniArk AASM" -Direction Inbound -Protocol TCP -LocalPort 27015-27020 -Action Allow
    New-NetFirewallRule -DisplayName "SteamCMD" -Direction Outbound -Program "C:\path\to\steamcmd.exe" -Action Allow
    ```
 
@@ -137,13 +137,13 @@ Ubuntu 24.04 often aborts before Electron JS can disable the sandbox.
 
 **Immediate workaround** (current AppImage):
 ```bash
-./Cerious-AASM-*.AppImage --no-sandbox --disable-setuid-sandbox
+./OmniArk-AASM-*.AppImage --no-sandbox --disable-setuid-sandbox
 # or:
-ELECTRON_DISABLE_SANDBOX=1 ./Cerious-AASM-*.AppImage
+ELECTRON_DISABLE_SANDBOX=1 ./OmniArk-AASM-*.AppImage
 ```
 
 Newer builds bake `--no-sandbox` into the AppImage/desktop launch args so a
-plain `./Cerious-AASM-*.AppImage` start works without extra flags.
+plain `./OmniArk-AASM-*.AppImage` start works without extra flags.
 
 ### Headless Mode Crashes on Linux (`Gtk-ERROR: Can't create a GtkStyleContext without a display connection`)
 
@@ -297,7 +297,7 @@ immediately with a core dump regardless of the `--headless` flag.
 4. **Firewall Blocking**:
    ```powershell
    # Allow web interface port
-   New-NetFirewallRule -DisplayName "Cerious Web" -Direction Inbound -Protocol TCP -LocalPort 3000 -Action Allow
+   New-NetFirewallRule -DisplayName "OmniArk Web" -Direction Inbound -Protocol TCP -LocalPort 3000 -Action Allow
    ```
 
 ### RCON Connection Failed
@@ -568,7 +568,7 @@ tcpdump -i any port 27015
 
 1. **Gather Information**:
    - Operating system and version
-   - Cerious AASM version
+   - OmniArk AASM version
    - Exact error messages
    - Steps to reproduce the issue
 
@@ -605,7 +605,7 @@ tcpdump -i any port 27015
 ```
 **Environment**:
 - OS: Windows 10 Pro 64-bit
-- Version: Cerious AASM v1.0.0
+- Version: OmniArk AASM v1.0.0
 - RAM: 16GB
 - Storage: SSD
 

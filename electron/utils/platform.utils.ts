@@ -40,7 +40,7 @@ export function isLinux(): boolean {
 export function getDefaultInstallDir(): string {
   const platform = getPlatform();
   if (platform === 'windows') {
-    return path.join(process.env.APPDATA || os.homedir(), 'Cerious AASM');
+    return path.join(process.env.APPDATA || os.homedir(), 'OmniArk AASM');
   } else if (platform === 'linux') {
     return path.join(os.homedir(), '.local', 'share', 'cerious-aasm');
   }
@@ -53,7 +53,7 @@ export function getDefaultInstallDir(): string {
 export function getUserDataPath(app: App): string {
   const platform = getPlatform();
   if (platform === 'windows') {
-    return path.join(app.getPath('appData'), 'Cerious AASM');
+    return path.join(app.getPath('appData'), 'OmniArk AASM');
   } else if (platform === 'linux') {
     return path.join(os.homedir(), '.local', 'share', 'cerious-aasm');
   }

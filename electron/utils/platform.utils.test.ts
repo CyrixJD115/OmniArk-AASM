@@ -99,11 +99,11 @@ describe('Platform Utils', () => {
       (process as any).platform = 'win32';
       process.env.APPDATA = 'C:\\Users\\Test\\AppData\\Roaming';
       mockOs.homedir.mockReturnValue('C:\\Users\\Test');
-      mockPath.join.mockReturnValue('C:\\Users\\Test\\AppData\\Roaming\\Cerious AASM');
+      mockPath.join.mockReturnValue('C:\\Users\\Test\\AppData\\Roaming\\OmniArk AASM');
 
       const result = getDefaultInstallDir();
-      expect(result).toBe('C:\\Users\\Test\\AppData\\Roaming\\Cerious AASM');
-      expect(mockPath.join).toHaveBeenCalledWith('C:\\Users\\Test\\AppData\\Roaming', 'Cerious AASM');
+      expect(result).toBe('C:\\Users\\Test\\AppData\\Roaming\\OmniArk AASM');
+      expect(mockPath.join).toHaveBeenCalledWith('C:\\Users\\Test\\AppData\\Roaming', 'OmniArk AASM');
     });
 
     it('should return Linux path when on Linux', () => {
@@ -120,10 +120,10 @@ describe('Platform Utils', () => {
       (process as any).platform = 'win32';
       delete process.env.APPDATA;
       mockOs.homedir.mockReturnValue('C:\\Users\\Test');
-      mockPath.join.mockReturnValue('C:\\Users\\Test\\Cerious AASM');
+      mockPath.join.mockReturnValue('C:\\Users\\Test\\OmniArk AASM');
 
       const result = getDefaultInstallDir();
-      expect(result).toBe('C:\\Users\\Test\\Cerious AASM');
+      expect(result).toBe('C:\\Users\\Test\\OmniArk AASM');
     });
   });
 
@@ -131,10 +131,10 @@ describe('Platform Utils', () => {
     it('should return Windows path when on Windows', () => {
       (process as any).platform = 'win32';
       mockApp.getPath.mockReturnValue('C:\\Users\\Test\\AppData\\Roaming');
-      mockPath.join.mockReturnValue('C:\\Users\\Test\\AppData\\Roaming\\Cerious AASM');
+      mockPath.join.mockReturnValue('C:\\Users\\Test\\AppData\\Roaming\\OmniArk AASM');
 
       const result = getUserDataPath(mockApp);
-      expect(result).toBe('C:\\Users\\Test\\AppData\\Roaming\\Cerious AASM');
+      expect(result).toBe('C:\\Users\\Test\\AppData\\Roaming\\OmniArk AASM');
       expect(mockApp.getPath).toHaveBeenCalledWith('appData');
     });
 

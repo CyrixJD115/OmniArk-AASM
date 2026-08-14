@@ -110,7 +110,7 @@
   "main": "electron/main.js",
   "build": {
     "appId": "com.cerious.aasm",
-    "productName": "Cerious AASM",
+    "productName": "OmniArk AASM",
     "publish": {
       "provider": "github",
       "owner": "ryoucerious",
@@ -148,11 +148,11 @@
       "icon": "./logo.ico",
       "target": "nsis",
       "requestedExecutionLevel": "asInvoker",
-      "artifactName": "Cerious-AASM-Setup-${version}.${ext}"
+      "artifactName": "OmniArk-AASM-Setup-${version}.${ext}"
     },
     "linux": {
       "icon": "./logo-square-256.png",
-      "artifactName": "Cerious-AASM-${version}.${ext}",
+      "artifactName": "OmniArk-AASM-${version}.${ext}",
       "target": [
         {
           "target": "AppImage",

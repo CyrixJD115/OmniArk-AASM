@@ -5,7 +5,7 @@
 
 set -e
 
-echo "Setting up Linux dependencies for Cerious AASM..."
+echo "Setting up Linux dependencies for OmniArk AASM..."
 
 # Detect the Linux distribution
 if [ -f /etc/os-release ]; then

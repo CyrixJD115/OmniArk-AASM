@@ -16,7 +16,7 @@ function cfGet(apiKey: string, urlPath: string): Promise<any> {
       headers: {
         'x-api-key': apiKey,
         'Accept': 'application/json',
-        'User-Agent': 'Cerious-AASM',
+        'User-Agent': 'OmniArk-AASM',
       },
     };
     https.get(opts, (res) => {

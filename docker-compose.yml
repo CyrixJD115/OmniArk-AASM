@@ -1,5 +1,5 @@
 # =============================================================================
-# Cerious AASM — Docker Compose for Linux Development & Testing
+# OmniArk AASM — Docker Compose for Linux Development & Testing
 # =============================================================================
 # Usage:
 #   docker compose run test              # Run electron jest tests in Linux
@@ -34,7 +34,7 @@ services:
     volumes:
       # Persist server data and config between container restarts
       - aasm-data:/home/aasm/.local/share/cerious-aasm
-      - aasm-config:/home/aasm/.config/Cerious AASM
+      - aasm-config:/home/aasm/.config/OmniArk AASM
     environment:
       - NODE_ENV=production
     restart: unless-stopped
@@ -53,7 +53,7 @@ services:
       - .:/app
       - /app/node_modules  # Preserve Linux node_modules, don't use Windows ones
       - aasm-data-dev:/home/aasm/.local/share/cerious-aasm
-      - aasm-config-dev:/home/aasm/.config/Cerious AASM
+      - aasm-config-dev:/home/aasm/.config/OmniArk AASM
     environment:
       - NODE_ENV=development
     # Recompile TS then launch

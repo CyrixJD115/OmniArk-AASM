@@ -1,5 +1,5 @@
 #!/bin/bash
-# Headless launcher for the INSTALLED Cerious AASM AppImage / deb / rpm.
+# Headless launcher for the INSTALLED OmniArk AASM AppImage / deb / rpm.
 #
 # Usage:
 #   cerious-aasm-headless-appimage.sh [--password=<password>] [--port=<port>] [extra args...]
@@ -18,7 +18,7 @@
 #   cerious-aasm-headless-appimage.sh --auth-enabled --password=admin123 --port=3000
 
 # --------------------------------------------------------------------------
-# Locate the Cerious AASM binary  (AppImage, or system-installed executable)
+# Locate the OmniArk AASM binary  (AppImage, or system-installed executable)
 # --------------------------------------------------------------------------
 APP_BIN=""
 
@@ -39,7 +39,7 @@ else
 fi
 
 if [ -z "$APP_BIN" ]; then
-  echo "[cerious-aasm] ERROR: Could not locate Cerious AASM binary."
+  echo "[cerious-aasm] ERROR: Could not locate OmniArk AASM binary."
   echo "  Set CERIOUS_AASM_BIN=/path/to/cerious-aasm and retry."
   exit 1
 fi

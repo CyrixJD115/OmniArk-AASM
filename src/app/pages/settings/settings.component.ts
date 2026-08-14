@@ -368,7 +368,7 @@ export class SettingsPageComponent {
       try {
         const os = (globalThis as any).require('os');
         const path = (globalThis as any).require('path');
-        return path.join(os.homedir(), 'AppData', 'Roaming', 'Cerious AASM');
+        return path.join(os.homedir(), 'AppData', 'Roaming', 'OmniArk AASM');
       } catch (e) {
         return 'Unknown';
       }

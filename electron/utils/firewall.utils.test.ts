@@ -189,7 +189,7 @@ describe('firewall.utils', () => {
     beforeEach(() => {
       // Mock process.execPath
       Object.defineProperty(process, 'execPath', {
-        value: 'C:\\Program Files\\Cerious AASM\\app.exe',
+        value: 'C:\\Program Files\\OmniArk AASM\\app.exe',
         writable: true
       });
     });
@@ -206,7 +206,7 @@ describe('firewall.utils', () => {
 
       expect(result).toBe(true);
       expect(mockExecAsync).toHaveBeenCalledWith(
-        'netsh advfirewall firewall add rule name="Cerious AASM Application" dir=in action=allow program="C:\\Program Files\\Cerious AASM\\app.exe" description="Allow Cerious AASM application network access"'
+        'netsh advfirewall firewall add rule name="OmniArk AASM Application" dir=in action=allow program="C:\\Program Files\\OmniArk AASM\\app.exe" description="Allow OmniArk AASM application network access"'
       );
     });
 
@@ -224,9 +224,9 @@ describe('firewall.utils', () => {
       mockExecAsync.mockResolvedValue({ stdout: '' });
       await createApplicationRule();
 
-      expect(mockExecAsync).toHaveBeenCalledWith('netsh advfirewall firewall delete rule name="Cerious AASM Application"');
+      expect(mockExecAsync).toHaveBeenCalledWith('netsh advfirewall firewall delete rule name="OmniArk AASM Application"');
       const lastCall = mockExecAsync.mock.calls[mockExecAsync.mock.calls.length - 1][0];
-      expect(lastCall).toContain('netsh advfirewall firewall add rule name="Cerious AASM Application"');
+      expect(lastCall).toContain('netsh advfirewall firewall add rule name="OmniArk AASM Application"');
     });
   });
 
@@ -269,7 +269,7 @@ describe('firewall.utils', () => {
 
       expect(result).toBe(true);
       expect(mockExecAsync).toHaveBeenCalledWith(
-        'netsh advfirewall firewall add rule name="ARK Server TCP 8080" dir=in action=allow protocol=TCP localport=8080 description="Cerious AASM Web Server Port 8080"'
+        'netsh advfirewall firewall add rule name="ARK Server TCP 8080" dir=in action=allow protocol=TCP localport=8080 description="OmniArk AASM Web Server Port 8080"'
       );
     });
   });

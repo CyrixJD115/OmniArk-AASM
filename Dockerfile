@@ -1,5 +1,5 @@
 # =============================================================================
-# Cerious AASM — Linux Development & Testing Dockerfile
+# OmniArk AASM — Linux Development & Testing Dockerfile
 # =============================================================================
 # Provides a Debian-based Linux environment with all dependencies needed to
 # run, test, and debug the headless Electron app (xvfb + web server mode).
@@ -89,7 +89,7 @@ EXPOSE 3000
 USER aasm
 
 # Data directory for server instances, configs, etc.
-VOLUME ["/home/aasm/.local/share/cerious-aasm", "/home/aasm/.config/Cerious AASM"]
+VOLUME ["/home/aasm/.local/share/cerious-aasm", "/home/aasm/.config/OmniArk AASM"]
 
 # Start xvfb, then launch the headless Electron app
 # --no-sandbox is required in Docker (no user namespace support)

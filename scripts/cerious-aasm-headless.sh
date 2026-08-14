@@ -1,5 +1,5 @@
 #!/bin/bash
-# Launcher script for Cerious AASM in headless mode (development / source builds)
+# Launcher script for OmniArk AASM in headless mode (development / source builds)
 #
 # On Linux, Electron initialises GTK at the native layer before any JavaScript
 # runs.  GTK requires a live display connection (X11 or Wayland).  When no

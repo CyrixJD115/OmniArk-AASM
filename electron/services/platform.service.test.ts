@@ -57,22 +57,22 @@ describe('PlatformService', () => {
     // which is undefined in test. We verify the non-Electron fallback paths instead.
     // When app is undefined, it falls through to platform-specific paths.
     Object.defineProperty(process, 'platform', { value: 'win32' });
-    expect(service.getConfigPath()).toContain('Cerious AASM');
+    expect(service.getConfigPath()).toContain('OmniArk AASM');
   });
 
   it('getConfigPath returns Windows path', () => {
   Object.defineProperty(process, 'platform', { value: 'win32' });
-  expect(service.getConfigPath()).toContain('Cerious AASM');
+  expect(service.getConfigPath()).toContain('OmniArk AASM');
   });
 
   it('getConfigPath returns Linux path', () => {
   Object.defineProperty(process, 'platform', { value: 'linux' });
-  expect(service.getConfigPath()).toContain('Cerious AASM');
+  expect(service.getConfigPath()).toContain('OmniArk AASM');
   });
 
   it('getConfigPath returns macOS path', () => {
   Object.defineProperty(process, 'platform', { value: 'darwin' });
-  expect(service.getConfigPath()).toContain('Cerious AASM');
+  expect(service.getConfigPath()).toContain('OmniArk AASM');
   });
 
 });

@@ -22,7 +22,7 @@ export class ApplicationService {
   private parseCommandLineArgs(): CommandLineArgs {
     // Check for help flag first
     if (process.argv.includes('--help') || process.argv.includes('-h')) {
-      console.log('\nCerious ARK Server Manager - Headless Mode Options:\n');
+      console.log('\nOmniArk ARK Server Manager - Headless Mode Options:\n');
       console.log('  --headless                    Run in headless mode (no GUI)');
       console.log('  --port=<port>                Set web server port (default: 3000)');
       console.log('  --auth-enabled                Enable authentication for web interface');

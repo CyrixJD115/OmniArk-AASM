@@ -57,7 +57,7 @@ describe('system-info-handler', () => {
         nodeVersion: '18.17.0',
         electronVersion: '25.0.0',
         platform: 'Windows',
-        configPath: 'C:\\Users\\user\\AppData\\Roaming\\Cerious AASM'
+        configPath: 'C:\\Users\\user\\AppData\\Roaming\\OmniArk AASM'
       };
 
       mockPlatformService.getNodeVersion.mockReturnValue(mockSystemInfo.nodeVersion);
@@ -91,7 +91,7 @@ describe('system-info-handler', () => {
         nodeVersion: '18.17.0',
         electronVersion: '25.0.0',
         platform: 'Linux',
-        configPath: '/home/user/.config/Cerious AASM'
+        configPath: '/home/user/.config/OmniArk AASM'
       };
 
       mockPlatformService.getNodeVersion.mockReturnValue(mockSystemInfo.nodeVersion);
@@ -124,7 +124,7 @@ describe('system-info-handler', () => {
         nodeVersion: null,
         electronVersion: null,
         platform: 'macOS',
-        configPath: '/Users/user/Library/Application Support/Cerious AASM'
+        configPath: '/Users/user/Library/Application Support/OmniArk AASM'
       };
 
       mockPlatformService.getNodeVersion.mockReturnValue(mockSystemInfo.nodeVersion);

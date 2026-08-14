@@ -113,7 +113,7 @@ export function startServer(app: express.Express, port: number): void {
     // Log to console in headless mode
     if (isHeadless) {
       console.log('\n' + '='.repeat(60));
-      console.log('🚀 Cerious AASM Headless Mode Started');
+      console.log('🚀 OmniArk AASM Headless Mode Started');
       console.log('='.repeat(60));
       console.log(`📡 Web server listening on port: ${port}`);
       console.log(`🔗 Access the web interface at: http://localhost:${port}`);

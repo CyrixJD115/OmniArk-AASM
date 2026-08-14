@@ -39,7 +39,7 @@ export class DiscordService {
       const color = this.getErrorColor(eventType);
       
       const payload = {
-        username: "Cerious AASM",
+        username: "OmniArk AASM",
         avatar_url: "https://i.imgur.com/4M34hi2.png", // Generic server icon or app icon
         embeds: [{
           title: `Server Notification: ${serverName}`,
