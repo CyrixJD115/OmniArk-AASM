@@ -24,9 +24,9 @@
   body.right-dashboard {
     background: #08182B;
     background-image:
-      radial-gradient(ellipse at top left, rgba(11, 97, 155, 0.22), transparent 50%),
-      radial-gradient(ellipse at bottom right, rgba(67, 165, 213, 0.12), transparent 50%),
-      radial-gradient(ellipse at 50% 100%, rgba(10, 105, 197, 0.08), transparent 60%);
+      radial-gradient(ellipse at top left, rgba(11, 97, 155, 0.14), transparent 50%),
+      radial-gradient(ellipse at bottom right, rgba(67, 165, 213, 0.08), transparent 50%),
+      radial-gradient(ellipse at 50% 100%, rgba(10, 105, 197, 0.05), transparent 60%);
     background-attachment: fixed;
   }
 
@@ -67,9 +67,9 @@
 
   /* --- CARDS: angular slab, hard block shadow --- */
   .card {
-    @apply w-full mx-auto mb-10 rounded-ark border border-deep-600/50
+    @apply w-full mx-auto mb-4 rounded-ark border border-deep-600/40
            p-0 shadow-card transition-all duration-ark;
-    background: rgba(14, 51, 87, 0.72);
+    background: rgba(6, 16, 28, 0.94);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
   }
@@ -80,13 +80,22 @@
   .card-header {
     @apply flex items-center justify-between border-b border-deep-600/40
            rounded-t-ark px-6 py-4;
-    background: linear-gradient(180deg, rgba(67, 165, 213, 0.06), transparent);
+    background: linear-gradient(180deg, rgba(67, 165, 213, 0.04), transparent);
+    transition: background 0.15s ease;
+  }
+  .card-header:hover {
+    background: linear-gradient(180deg, rgba(67, 165, 213, 0.1), transparent);
   }
   .card-header h2 {
     @apply m-0 text-xs font-bold uppercase tracking-[0.14em];
     font-family: 'Montserrat', 'Inter', system-ui, sans-serif;
     color: #E8F0F3;
-    text-shadow: 0 0 20px rgba(67, 165, 213, 0.3);
+    text-shadow: 0 0 16px rgba(67, 165, 213, 0.2);
+    transition: text-shadow 0.15s ease, color 0.15s ease;
+  }
+  .card-header:hover h2 {
+    color: #fff;
+    text-shadow: 0 0 18px rgba(67, 165, 213, 0.55);
   }
 
   .card-body {
@@ -97,7 +106,7 @@
   .sub-card {
     @apply rounded-ark border border-deep-600/40 overflow-hidden;
     background: rgba(10, 28, 48, 0.85);
-    box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.45);
+    box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.5);
   }
   .sub-card .card-header {
     @apply rounded-t-ark border-b border-deep-600/40;
@@ -109,7 +118,7 @@
   }
   .sub-card .card-body {
     @apply rounded-b-ark border border-deep-600/40 border-t-0;
-    background: #0E3357;
+    background: #0A1C30;
     color: #9DB1B8;
   }
 
@@ -138,7 +147,7 @@
   .btn:disabled,
   .btn[disabled] {
     @apply opacity-50 cursor-not-allowed;
-    background: #0E3357;
+    background: #0A1C30;
     color: #54768F;
     border-color: #294E6B;
     box-shadow: none;
@@ -236,7 +245,7 @@
     border-color: rgba(248, 113, 113, 0.35);
   }
   .status-starting {
-    background: rgba(67, 165, 213, 0.12);
+    background: rgba(67, 165, 213, 0.08);
     color: #43A5D5;
     border-color: rgba(67, 165, 213, 0.45);
     box-shadow: 0 0 12px rgba(67, 165, 213, 0.25);
@@ -306,10 +315,11 @@
     margin-right: 0;
   }
   .tab:hover:not(.active) {
-    background: rgba(67, 165, 213, 0.05);
-    color: #9DB1B8;
-    border-bottom-color: rgba(67, 165, 213, 0.3);
-  }
+      background: rgba(67, 165, 213, 0.05);
+      color: #9DB1B8;
+      border-bottom-color: rgba(67, 165, 213, 0.25);
+
+    }
   .tab.active {
     background: transparent;
     color: #43A5D5;
@@ -328,7 +338,7 @@
   }
   .modal {
     @apply flex flex-col rounded-ark overflow-hidden m-4 p-0;
-    background: #0E3357;
+    background: #0A1C30;
     box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 0.6);
     border: 1px solid #294E6B;
     min-width: 340px;
@@ -337,7 +347,7 @@
   }
   .modal-header {
     @apply flex items-center justify-between my-8 mx-auto;
-    background: #0E3357;
+    background: #0A1C30;
   }
   .modal-header h2 {
     @apply m-0 text-xl font-bold uppercase tracking-[0.1em];
@@ -366,7 +376,7 @@
     background: rgba(8, 24, 43, 0.95);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    box-shadow: 2px 0 0 0 rgba(67, 165, 213, 0.12);
+    box-shadow: 2px 0 0 0 rgba(67, 165, 213, 0.08);
     border-right: 1px solid #1B4771;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -407,9 +417,10 @@
     text-transform: uppercase;
     letter-spacing: 0.14em;
     font-family: 'Montserrat', 'Inter', system-ui, sans-serif;
-    text-shadow: 0 0 12px rgba(67, 165, 213, 0.3);
-  }
-  .sidebar-content {
+    text-shadow: 0 0 12px rgba(67, 165, 213, 0.2);
+
+      }
+      .sidebar-content {
     @apply flex-1 px-2 overflow-y-auto;
   }
   .server-list {
@@ -504,11 +515,12 @@
 
   /* --- SECTION DIVIDER: glowing rune seam --- */
   .section-divider {
-    @apply mt-2 h-0.5 w-32;
-    background: linear-gradient(90deg, rgba(67, 165, 213, 0.7), rgba(10, 105, 197, 0.2), transparent);
-    border-radius: 0;
-    box-shadow: 0 0 8px rgba(67, 165, 213, 0.3);
-  }
+      @apply mt-2 h-0.5 w-32;
+      background: linear-gradient(90deg, rgba(67, 165, 213, 0.7), rgba(10, 105, 197, 0.2), transparent);
+      border-radius: 0;
+      box-shadow: 0 0 8px rgba(67, 165, 213, 0.25);
+
+    }
 
   /* --- PIXEL DIVIDER: OmniBedrock rhythm, OmniArk seam --- */
   .pixel-divider {
@@ -532,4 +544,100 @@
   .status-dot.running { background: #2DD4BF; box-shadow: 0 0 8px rgba(45, 212, 191, 0.6); }
   .status-dot.stopped { background: #F87171; box-shadow: 0 0 8px rgba(248, 113, 113, 0.4); }
   .status-dot.starting { background: #43A5D5; box-shadow: 0 0 8px rgba(67, 165, 213, 0.6); animation: pulse 1s infinite; }
+}
+/* ============ CONFIG SEARCH ============ */
+.config-search {
+  position: relative;
+  margin-right: 0.75rem;
+}
+.config-search-box {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  background: rgba(6, 16, 28, 0.85);
+  border: 1px solid rgba(67, 165, 213, 0.22);
+  border-radius: 6px;
+  padding: 0.25rem 0.5rem;
+  min-width: 220px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.config-search-box:focus-within {
+  border-color: rgba(67, 165, 213, 0.55);
+  box-shadow: 0 0 0 2px rgba(67, 165, 213, 0.12);
+}
+.config-search-icon { color: #54768F; font-size: 1rem; }
+.config-search-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #c7d5dd;
+  font-size: 0.875rem;
+  flex: 1;
+  min-width: 0;
+  padding: 0.25rem 0;
+}
+.config-search-input::placeholder { color: #54768F; }
+.config-search-scope {
+  background: rgba(10, 105, 197, 0.18);
+  color: #43A5D5;
+  border: 1px solid rgba(67, 165, 213, 0.3);
+  border-radius: 4px;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.125rem 0.375rem;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+}
+.config-search-scope:hover { background: rgba(10, 105, 197, 0.32); }
+.config-search-results {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  width: 380px;
+  max-height: 340px;
+  overflow-y: auto;
+  background: rgba(8, 21, 38, 0.97);
+  border: 1px solid rgba(67, 165, 213, 0.28);
+  border-radius: 8px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+  z-index: 60;
+  padding: 0.375rem;
+}
+.config-search-result {
+  display: grid;
+  grid-template-columns: 88px 1fr auto;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.5rem 0.625rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.config-search-result:hover { background: rgba(67, 165, 213, 0.09); }
+.config-search-tab {
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #43A5D5;
+  font-family: 'Montserrat', sans-serif;
+}
+.config-search-label {
+  font-size: 0.8125rem;
+  color: #c7d5dd;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.config-search-key {
+  font-size: 0.6875rem;
+  color: #54768F;
+  font-family: 'JetBrains Mono', monospace;
+}
+.config-search-flash {
+  animation: configFlash 2.5s ease-out;
+}
+@keyframes configFlash {
+  0% { background: rgba(67, 165, 213, 0.35); box-shadow: 0 0 0 3px rgba(67, 165, 213, 0.3); }
+  100% { background: transparent; box-shadow: none; }
 }

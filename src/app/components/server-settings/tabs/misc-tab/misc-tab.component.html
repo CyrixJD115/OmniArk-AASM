@@ -11,7 +11,7 @@
     <p class="section-desc">Core game mode settings that define the overall server experience.</p>
 
     <ng-container *ngFor="let field of getFieldsByCategory('gamemode')">
-      <div class="form-group">
+      <div class="form-group" [attr.data-config-key]="field.key">
         <div *ngIf="field.type === 'boolean'" class="form-control-label toggle-label">
           <input type="checkbox" class="toggle-switch" [(ngModel)]="serverInstance[field.key]" (change)="onSaveSettings()" [disabled]="isLocked" tabindex="0" />
           <span class="toggle-text">{{ field.label }}</span>
@@ -31,7 +31,7 @@
     <p class="section-desc">Configure PvP rules, combat mechanics, friendly fire, and offline protection.</p>
 
     <ng-container *ngFor="let field of getFieldsByCategory('pvp')">
-      <div class="form-group">
+      <div class="form-group" [attr.data-config-key]="field.key">
         <div *ngIf="field.type === 'boolean'" class="form-control-label toggle-label">
           <input type="checkbox" class="toggle-switch" [(ngModel)]="serverInstance[field.key]" (change)="onSaveSettings()" [disabled]="isLocked" tabindex="0" />
           <span class="toggle-text">{{ field.label }}</span>
@@ -51,7 +51,7 @@
     <p class="section-desc">Configure heads-up display, camera, weather effects, and visual feedback options.</p>
 
     <ng-container *ngFor="let field of getFieldsByCategory('hud')">
-      <div class="form-group">
+      <div class="form-group" [attr.data-config-key]="field.key">
         <div *ngIf="field.type === 'boolean'" class="form-control-label toggle-label">
           <input type="checkbox" class="toggle-switch" [(ngModel)]="serverInstance[field.key]" (change)="onSaveSettings()" [disabled]="isLocked" tabindex="0" />
           <span class="toggle-text">{{ field.label }}</span>
@@ -71,7 +71,7 @@
     <p class="section-desc">Configure voice chat and communication options.</p>
 
     <ng-container *ngFor="let field of getFieldsByCategory('chat')">
-      <div class="form-group">
+      <div class="form-group" [attr.data-config-key]="field.key">
         <div *ngIf="field.type === 'boolean'" class="form-control-label toggle-label">
           <input type="checkbox" class="toggle-switch" [(ngModel)]="serverInstance[field.key]" (change)="onSaveSettings()" [disabled]="isLocked" tabindex="0" />
           <span class="toggle-text">{{ field.label }}</span>
@@ -88,7 +88,7 @@
     <p class="section-desc">Configure tame limits, flyer rules, imprinting, and creature behavior.</p>
 
     <ng-container *ngFor="let field of getFieldsByCategory('creatures')">
-      <div class="form-group">
+      <div class="form-group" [attr.data-config-key]="field.key">
         <div *ngIf="field.type === 'boolean'" class="form-control-label toggle-label">
           <input type="checkbox" class="toggle-switch" [(ngModel)]="serverInstance[field.key]" (change)="onSaveSettings()" [disabled]="isLocked" tabindex="0" />
           <span class="toggle-text">{{ field.label }}</span>
@@ -108,7 +108,7 @@
     <p class="section-desc">Configure engram unlocking, crafting recipes, and item stack sizes.</p>
 
     <ng-container *ngFor="let field of getFieldsByCategory('engrams')">
-      <div class="form-group">
+      <div class="form-group" [attr.data-config-key]="field.key">
         <div *ngIf="field.type === 'boolean'" class="form-control-label toggle-label">
           <input type="checkbox" class="toggle-switch" [(ngModel)]="serverInstance[field.key]" (change)="onSaveSettings()" [disabled]="isLocked" tabindex="0" />
           <span class="toggle-text">{{ field.label }}</span>
@@ -128,7 +128,7 @@
     <p class="section-desc">Configure server administration, logging, auto-save, and player management.</p>
 
     <ng-container *ngFor="let field of getFieldsByCategory('admin')">
-      <div class="form-group">
+      <div class="form-group" [attr.data-config-key]="field.key">
         <div *ngIf="field.type === 'boolean'" class="form-control-label toggle-label">
           <input type="checkbox" class="toggle-switch" [(ngModel)]="serverInstance[field.key]" (change)="onSaveSettings()" [disabled]="isLocked" tabindex="0" />
           <span class="toggle-text">{{ field.label }}</span>

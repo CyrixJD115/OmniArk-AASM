@@ -10,7 +10,7 @@
     <p class="section-desc">Configure experience gain rates and progression multipliers.</p>
 
     <ng-container *ngFor="let field of getFieldsByCategory('experience')">
-    <div class="form-group">
+    <div class="form-group" [attr.data-config-key]="field.key">
       <div *ngIf="field.type === 'boolean'" class="form-control-label toggle-label">
         <input type="checkbox" class="toggle-switch" [(ngModel)]="serverInstance[field.key]" (change)="onSaveSettings()" [disabled]="isLocked" tabindex="0" />
         <span class="toggle-text">{{ field.label }}</span>
@@ -33,7 +33,7 @@
     <p class="section-desc">Configure taming speeds and breeding rates.</p>
 
     <ng-container *ngFor="let field of getFieldsByCategory('taming')">
-    <div class="form-group">
+    <div class="form-group" [attr.data-config-key]="field.key">
       <div *ngIf="field.type === 'boolean'" class="form-control-label toggle-label">
         <input type="checkbox" class="toggle-switch" [(ngModel)]="serverInstance[field.key]" (change)="onSaveSettings()" [disabled]="isLocked" tabindex="0" />
         <span class="toggle-text">{{ field.label }}</span>
@@ -56,7 +56,7 @@
     <p class="section-desc">Configure resource gathering rates and harvest amounts.</p>
 
     <ng-container *ngFor="let field of getFieldsByCategory('harvesting')">
-    <div class="form-group">
+    <div class="form-group" [attr.data-config-key]="field.key">
       <div *ngIf="field.type === 'boolean'" class="form-control-label toggle-label">
         <input type="checkbox" class="toggle-switch" [(ngModel)]="serverInstance[field.key]" (change)="onSaveSettings()" [disabled]="isLocked" tabindex="0" />
         <span class="toggle-text">{{ field.label }}</span>
@@ -79,7 +79,7 @@
     <p class="section-desc">Configure player and dinosaur stat multipliers.</p>
 
     <ng-container *ngFor="let field of getFieldsByCategory('stats')">
-    <div class="form-group">
+    <div class="form-group" [attr.data-config-key]="field.key">
       <div *ngIf="field.type === 'boolean'" class="form-control-label toggle-label">
         <input type="checkbox" class="toggle-switch" [(ngModel)]="serverInstance[field.key]" (change)="onSaveSettings()" [disabled]="isLocked" tabindex="0" />
         <span class="toggle-text">{{ field.label }}</span>
@@ -102,7 +102,7 @@
     <p class="section-desc">Configure world settings, day/night cycle, spoiling, and environmental factors.</p>
 
     <ng-container *ngFor="let field of getFieldsByCategory('world')">
-    <div class="form-group">
+    <div class="form-group" [attr.data-config-key]="field.key">
       <div *ngIf="field.type === 'boolean'" class="form-control-label toggle-label">
         <input type="checkbox" class="toggle-switch" [(ngModel)]="serverInstance[field.key]" (change)="onSaveSettings()" [disabled]="isLocked" tabindex="0" />
         <span class="toggle-text">{{ field.label }}</span>
@@ -125,7 +125,7 @@
     <p class="section-desc">Configure loot quality from supply crates and fishing.</p>
 
     <ng-container *ngFor="let field of getFieldsByCategory('loot')">
-    <div class="form-group">
+    <div class="form-group" [attr.data-config-key]="field.key">
       <div *ngIf="field.type === 'boolean'" class="form-control-label toggle-label">
         <input type="checkbox" class="toggle-switch" [(ngModel)]="serverInstance[field.key]" (change)="onSaveSettings()" [disabled]="isLocked" tabindex="0" />
         <span class="toggle-text">{{ field.label }}</span>

@@ -9,7 +9,7 @@
     <p class="section-desc">Configure your server's basic properties and settings.</p>
 
     <ng-container *ngFor="let field of generalFields">
-      <div class="form-group">
+      <div class="form-group" [attr.data-config-key]="field.key">
         <ng-container *ngIf="field.type === 'multi-toggle'; else defaultField">
           <label class="form-control-label">{{ field.label }}</label>
           <div class="toggle-group" style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0.5rem; align-items: flex-start;">

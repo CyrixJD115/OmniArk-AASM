@@ -7,6 +7,23 @@
         <input type="checkbox" class="toggle-switch shrink-0" [checked]="expertMode" (change)="toggleExpertMode($event)" tabindex="0" />
         <span class="toggle-text whitespace-nowrap text-sm text-[#b0b6c1]">Expert Mode</span>
       </div>
+      <!-- Config search -->
+      <div class="config-search" (click)="$event.stopPropagation()">
+        <div class="config-search-box">
+          <iconify-icon icon="material-symbols:search" class="shrink-0 config-search-icon"></iconify-icon>
+          <input #configSearchInput type="text" class="config-search-input" [(ngModel)]="configSearch" (ngModelChange)="runConfigSearch()" (keydown.enter)="goToConfigField(configSearchResults[0])" placeholder="Search config variables..." />
+          <button class="config-search-scope" (click)="configSearchScope = configSearchScope === 'all' ? 'tab' : 'all'; runConfigSearch()" title="Toggle search scope">
+            {{ configSearchScope === 'all' ? 'ALL' : 'TAB' }}
+          </button>
+        </div>
+        <div class="config-search-results" *ngIf="configSearchResults.length > 0">
+          <div class="config-search-result" *ngFor="let r of configSearchResults" (click)="goToConfigField(r)">
+            <span class="config-search-tab">{{ r.tab }}</span>
+            <span class="config-search-label">{{ r.label }}</span>
+            <span class="config-search-key">{{ r.key }}</span>
+          </div>
+        </div>
+      </div>
       <button class="btn btn-icon-only" (click)="onImportConfig($event)" title="Import settings from an INI file">
         <iconify-icon icon="material-symbols:file-upload" class="shrink-0"></iconify-icon>
       </button>

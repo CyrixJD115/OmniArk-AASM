@@ -10,7 +10,7 @@
     <p class="section-desc">Control how structures take damage, decay over time, and structure limits.</p>
 
     <ng-container *ngFor="let field of getFieldsByCategory('damage')">
-      <div class="form-group">
+      <div class="form-group" [attr.data-config-key]="field.key">
         <div *ngIf="field.type === 'boolean'" class="form-control-label toggle-label">
           <input type="checkbox" class="toggle-switch" [(ngModel)]="serverInstance[field.key]" (change)="onSaveSettings()" [disabled]="isLocked" tabindex="0" />
           <span class="toggle-text">{{ field.label }}</span>
@@ -30,7 +30,7 @@
     <p class="section-desc">Configure platform saddle build limits, area sizes, and stacking rules.</p>
 
     <ng-container *ngFor="let field of getFieldsByCategory('platform')">
-      <div class="form-group">
+      <div class="form-group" [attr.data-config-key]="field.key">
         <div *ngIf="field.type === 'boolean'" class="form-control-label toggle-label">
           <input type="checkbox" class="toggle-switch" [(ngModel)]="serverInstance[field.key]" (change)="onSaveSettings()" [disabled]="isLocked" tabindex="0" />
           <span class="toggle-text">{{ field.label }}</span>
@@ -50,7 +50,7 @@
     <p class="section-desc">Configure placement rules, pickup timers, resource prevention, and building restrictions.</p>
 
     <ng-container *ngFor="let field of getFieldsByCategory('building')">
-      <div class="form-group">
+      <div class="form-group" [attr.data-config-key]="field.key">
         <div *ngIf="field.type === 'boolean'" class="form-control-label toggle-label">
           <input type="checkbox" class="toggle-switch" [(ngModel)]="serverInstance[field.key]" (change)="onSaveSettings()" [disabled]="isLocked" tabindex="0" />
           <span class="toggle-text">{{ field.label }}</span>
