@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IpcService } from '../../core/services/ipc.service';
 import { NotificationService } from '../../core/services/notification.service';
 import { Subscription, interval } from 'rxjs';
+import { PaginationComponent } from '../pagination/pagination.component';
 
 interface Player {
   name: string;
@@ -13,17 +14,25 @@ interface Player {
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   selector: 'app-player-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, PaginationComponent],
   templateUrl: './player-list.component.html'
 })
 export class PlayerListComponent implements OnInit, OnDestroy {
   @Input() serverInstance: any;
 
   players: Player[] = [];
-  loading = false;
-  lastUpdated: Date | null = null;
-  autoRefreshSub: Subscription | null = null;
-  error: string | null = null;
+      page = 1;
+      pageSize = 25;
+      loading = false;
+    lastUpdated: Date | null = null;
+    autoRefreshSub: Subscription | null = null;
+    error: string | null = null;
+
+    get pagedPlayers(): Player[] {
+      const tp = Math.max(1, Math.ceil(this.players.length / this.pageSize));
+      if (this.page > tp) this.page = tp;
+      return this.players.slice((this.page - 1) * this.pageSize, this.page * this.pageSize);
+    }
 
   constructor(
     private ipcService: IpcService,

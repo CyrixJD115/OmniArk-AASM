@@ -186,12 +186,10 @@
       </div>
 
       <!-- Footer actions -->
-      <div class="action-group-modal mt-4">
-        <button *ngIf="cfHasMore" class="btn btn-ghost" (click)="cfLoadMore()" [disabled]="cfSearching">
-          {{ cfSearching ? 'Loading…' : 'Load More' }}
-        </button>
-        <button class="btn btn-ghost" (click)="closeBrowseModal()">Close</button>
-      </div>
+            <div class="action-group-modal mt-4">
+              <app-pagination *ngIf="cfTotalCount > 0" [total]="cfTotalCount" [page]="cfPage + 1" [pageSize]="cfPageSize" (pageChange)="cfGoToPage($event)"></app-pagination>
+              <button class="btn btn-ghost" (click)="closeBrowseModal()">Close</button>
+            </div>
     </div>
   </app-modal>
 

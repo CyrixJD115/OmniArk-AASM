@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { PaginationComponent } from '../../../pagination/pagination.component';
 
 interface WhitelistPlayer {
   playerId: string;
@@ -12,7 +13,7 @@ interface WhitelistPlayer {
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   selector: 'app-whitelist-tab',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, PaginationComponent],
   templateUrl: './whitelist-tab.component.html'
 })
 export class WhitelistTabComponent implements OnChanges {
@@ -35,8 +36,17 @@ export class WhitelistTabComponent implements OnChanges {
   bulkPlayerIds = '';
   
   // UI state
-  statusMessage = '';
-  statusType: 'success' | 'error' | 'warning' = 'success';
+    statusMessage = '';
+    statusType: 'success' | 'error' | 'warning' = 'success';
+    page = 1;
+    pageSize = 25;
+
+    get pagedWhitelist(): WhitelistPlayer[] {
+      const all = this.whitelistedPlayers;
+      const tp = Math.max(1, Math.ceil(all.length / this.pageSize));
+      if (this.page > tp) this.page = tp;
+      return all.slice((this.page - 1) * this.pageSize, this.page * this.pageSize);
+    }
 
   constructor() {}
 

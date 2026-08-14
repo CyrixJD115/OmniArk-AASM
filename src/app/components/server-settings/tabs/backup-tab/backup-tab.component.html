@@ -97,7 +97,7 @@
               <tr *ngIf="!backupList || backupList.length === 0" class="no-data-row">
                 <td colspan="4" class="no-data">No backups available</td>
               </tr>
-              <tr *ngFor="let backup of backupList; trackBy: trackByBackupId" class="table-row">
+              <tr *ngFor="let backup of pagedBackups; trackBy: trackByBackupId" class="table-row">
                 <td class="backup-name">{{ backup.name }}</td>
                 <td class="backup-date">{{ getFormattedDate(backup.createdAt) }}</td>
                 <td class="backup-size">{{ formatFileSize(backup.size) }}</td>
@@ -116,7 +116,8 @@
             </tbody>
           </table>
         </div>
-        <div class="form-control-label desc">Click restore to replace current server files with backup, or delete to remove a backup.</div>
+                <app-pagination [total]="backupList.length" [page]="page" [pageSize]="pageSize" (pageChange)="page = $event"></app-pagination>
+                <div class="form-control-label desc">Click restore to replace current server files with backup, or delete to remove a backup.</div>
       </div>
     </div>
     </div>

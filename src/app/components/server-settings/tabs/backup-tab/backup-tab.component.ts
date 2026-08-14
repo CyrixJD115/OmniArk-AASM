@@ -1,12 +1,13 @@
 import { Component, Input, Output, EventEmitter, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { PaginationComponent } from '../../../pagination/pagination.component';
 
 @Component({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   selector: 'app-backup-tab',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, PaginationComponent],
   templateUrl: './backup-tab.component.html'
 })
 export class BackupTabComponent {
@@ -16,9 +17,17 @@ export class BackupTabComponent {
   @Input() backupDayOfWeek = 0;
   @Input() maxBackupsToKeep = 10;
   @Input() backupList: any[] = [];
-  @Input() isBackupLocked = false;
-  @Input() backupFrequencyDropdownOpen = false;
-  @Input() backupDayDropdownOpen = false;
+    @Input() isBackupLocked = false;
+    @Input() backupFrequencyDropdownOpen = false;
+    @Input() backupDayDropdownOpen = false;
+    page = 1;
+    pageSize = 25;
+
+    get pagedBackups(): any[] {
+      const tp = Math.max(1, Math.ceil(this.backupList.length / this.pageSize));
+      if (this.page > tp) this.page = tp;
+      return this.backupList.slice((this.page - 1) * this.pageSize, this.page * this.pageSize);
+    }
 
   @Output() createManualBackup = new EventEmitter<void>();
   @Output() backupScheduleToggle = new EventEmitter<void>();

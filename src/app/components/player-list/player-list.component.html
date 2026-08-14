@@ -51,7 +51,7 @@
             <td colspan="3" class="no-data">No players online</td>
           </tr>
           <!-- Player Rows -->
-          <tr *ngFor="let player of players" class="table-row">
+                    <tr *ngFor="let player of pagedPlayers" class="table-row">
             <td class="player-name">{{ player.name }}</td>
             <td class="player-id font-mono">{{ player.steamId }}</td>
             <td class="player-actions">
@@ -62,8 +62,9 @@
           </tr>
         </tbody>
       </table>
-    </div>
-    <div class="form-control-label desc">Player data refreshes automatically when the tab is opened. Use the refresh button for manual updates.</div>
+          </div>
+          <app-pagination [total]="players.length" [page]="page" [pageSize]="pageSize" (pageChange)="page = $event"></app-pagination>
+          <div class="form-control-label desc">Player data refreshes automatically when the tab is opened. Use the refresh button for manual updates.</div>
   </div>
   </div>
 </div>

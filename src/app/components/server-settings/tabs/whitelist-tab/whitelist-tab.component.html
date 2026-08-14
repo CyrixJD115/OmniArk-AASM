@@ -76,7 +76,7 @@
             <tr *ngIf="whitelistedPlayers.length === 0" class="no-data-row">
               <td colspan="4" class="no-data">No players whitelisted</td>
             </tr>
-            <tr *ngFor="let player of whitelistedPlayers; trackBy: trackByPlayerId" class="table-row">
+            <tr *ngFor="let player of pagedWhitelist; trackBy: trackByPlayerId" class="table-row">
               <td class="whitelist-id">{{ player.playerId }}</td>
               <td class="whitelist-name">{{ player.playerName || 'Unknown' }}</td>
               <td class="whitelist-date">{{ player.dateAdded || 'Unknown' }}</td>
@@ -90,10 +90,11 @@
               </td>
             </tr>
           </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+                 </table>
+               </div>
+               <app-pagination [total]="whitelistedPlayers.length" [page]="page" [pageSize]="pageSize" (pageChange)="page = $event"></app-pagination>
+             </div>
+           </div>
 
   <!-- Status Message -->
   <div *ngIf="statusMessage" class="form-group" style="grid-column: 1 / -1;">

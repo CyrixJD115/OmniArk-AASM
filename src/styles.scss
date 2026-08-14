@@ -69,19 +69,38 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #353c42;
+  background: #08182B;
+  background-image:
+    radial-gradient(ellipse at 20% 10%, rgba(11, 97, 155, 0.35), transparent 55%),
+    radial-gradient(ellipse at 80% 90%, rgba(67, 165, 213, 0.18), transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(10, 105, 197, 0.1), transparent 70%);
   padding: 20px;
   font-family: 'Roboto', sans-serif;
 }
 
 .login-card {
-  background: $background-dark;
+  background: rgba(14, 51, 87, 0.85);
   border-radius: 8px;
-  border: 1px solid $border-dark;
+  border: 1px solid #294E6B;
   padding: 40px;
   width: 100%;
   max-width: 400px;
   text-align: center;
+  backdrop-filter: blur(8px);
+  box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 0.55);
+}
+
+.login-logo {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 12px auto;
+  display: block;
+  filter: drop-shadow(0 0 18px rgba(67, 165, 213, 0.5));
+}
+
+.login-divider {
+  margin: 16px auto 0 auto;
+  width: 140px;
 }
 
 .login-header {
@@ -89,15 +108,18 @@
   
   h1 {
     font-size: 28px;
-    font-weight: 600;
-    color: $primary;
+    font-weight: 700;
+    color: #43A5D5;
     margin: 0 0 10px 0;
+    text-shadow: 0 0 18px rgba(67, 165, 213, 0.45);
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.04em;
   }
   
   h2 {
     font-size: 16px;
     font-weight: 400;
-    color: $text-primary;
+    color: #9DB1B8;
     margin: 0;
   }
 }

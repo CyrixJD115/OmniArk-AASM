@@ -7,12 +7,13 @@ import { GlobalConfigService } from '../../../../core/services/global-config.ser
 import { NotificationService } from '../../../../core/services/notification.service';
 import { UtilityService } from '../../../../core/services/utility.service';
 import { environment } from '../../../../../environments/environment';
+import { PaginationComponent } from '../../../pagination/pagination.component';
 
 @Component({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   selector: 'app-mods-tab',
   standalone: true,
-  imports: [CommonModule, FormsModule, ModalComponent],
+  imports: [CommonModule, FormsModule, ModalComponent, PaginationComponent],
   templateUrl: './mods-tab.component.html'
 })
 export class ModsTabComponent {
@@ -142,12 +143,13 @@ export class ModsTabComponent {
     }).subscribe({
       next: (res: any) => {
         if (res?.success) {
-          if (reset) {
-            this.cfSearchResults = res.mods || [];
-          } else {
-            this.cfSearchResults = [...this.cfSearchResults, ...(res.mods || [])];
-          }
-          this.cfHasMore = (res.pagination?.totalCount ?? 0) > (this.cfPage + 1) * this.cfPageSize;
+                  if (reset) {
+                    this.cfSearchResults = res.mods || [];
+                  } else {
+                    this.cfSearchResults = [...this.cfSearchResults, ...(res.mods || [])];
+                  }
+                  this.cfTotalCount = res.pagination?.totalCount ?? 0;
+                  this.cfHasMore = this.cfTotalCount > (this.cfPage + 1) * this.cfPageSize;
         } else {
           const msg = res?.error || 'Search failed.';
           this.cfError = msg;
@@ -167,9 +169,17 @@ export class ModsTabComponent {
   }
 
   cfLoadMore(): void {
-    this.cfPage++;
-    this.searchCurseForge(false);
-  }
+      this.cfPage++;
+      this.searchCurseForge(false);
+    }
+
+    cfTotalCount = 0;
+
+    cfGoToPage(page: number): void {
+      this.cfPage = page - 1;
+      this.cfSearchResults = [];
+      this.searchCurseForge(true);
+    }
 
   addModFromCurseForge(mod: any): void {
     const existing = (this.modList || []).find((m: any) => String(m.id) === String(mod.id));
